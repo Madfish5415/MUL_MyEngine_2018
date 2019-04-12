@@ -1,5 +1,5 @@
 ##
-## EPITECH PROJECT, 2018
+## EPITECH PROJECT, 2019
 ## Makefile
 ## File description:
 ## Makefile for MUL_MyEngine_2018
@@ -7,13 +7,15 @@
 
 NAME			=		my_engine
 
+TEST_NAME		=		./tests/unit_tests
+
 CC				=		gcc
 
-RM				=		rm -f
+RM				=		rm -rf
 
-MAIN            =       main.c
+MAIN_SRC		=		main.c
 
-SRC             =		window.c											\
+PROJ_SRC		=		window.c											\
 						components/engine/button.c							\
 						components/engine/button_list.c						\
 						components/engine/data.c							\
@@ -70,23 +72,29 @@ SRC             =		window.c											\
 						utils/engine/vector_utils.c							\
 						utils/engine/window_utils.c							\
 
-MAINOBJ         =       $(MAIN:.c=.o)
+TEST_SRC		=		tests/test_src.c		\
 
-OBJ             =		$(SRC:.c=.o)
+MAIN_OBJ		=		$(MAIN_SRC:.c=.o)
 
-CFLAGS          +=		-I "./include/"
+PROJ_OBJ		=		$(PROJ_SRC:.c=.o)
+
+TEST_OBJ		=		$(TEST_SRC:.c=.o)
+
+INCLUDE_DIR		=		"include/"
+LIB_DIR			=		"lib/my/"
+
+CFLAGS			+=		-I $(INCLUDE_DIR)
 CFLAGS			+=		-W -Wall -Wextra
 
-LIBFLAGS		=		-lcsfml-audio -lcsfml-graphics -lcsfml-system -lcsfml-window
-LIBFLAGS		+=		-lm
+LDLIBS			+=		-lcsfml-audio -lcsfml-graphics -lcsfml-system -lcsfml-window -lm
 
 all:			$(NAME)
 
-$(NAME):		$(MAINOBJ) $(OBJ)
-				$(CC) $(MAINOBJ) $(OBJ) -o $(NAME) $(LIBFLAGS)
+$(NAME):		$(MAIN_OBJ) $(PROJ_OBJ)
+				$(CC) $(MAIN_OBJ) $(PROJ_OBJ) -o $(NAME) $(CFLAGS) $(LDFLAGS) $(LDLIBS)
 
 clean:
-				$(RM) $(MAINOBJ) $(OBJ)
+				$(RM) $(MAIN_OBJ) $(PROJ_OBJ)
 
 fclean:			clean
 				$(RM) $(NAME)
@@ -94,3 +102,19 @@ fclean:			clean
 re:				fclean all
 
 sweet:			all clean
+
+tests_run:		sweet
+
+tests_clean:	clean
+				$(RM) $(TEST_OBJ)
+				$(RM) *.gcda
+				$(RM) *.gcno
+
+tests_fclean:	tests_clean
+				$(RM) $(TEST_NAME)
+
+tests_sweet:	tests_run tests_clean
+
+tests_sh:       sweet
+
+.PHONY:         all clean fclean re sweet tests_run tests_clean tests_fclean tests_sh
