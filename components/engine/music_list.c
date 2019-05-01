@@ -47,7 +47,6 @@ music_t *music_list_get(music_list_t *music_list, int id)
 
 void music_list_remove(music_list_t **music_list, int id)
 {
-    music_list_t *start = *music_list;
     music_list_t *loop = *music_list;
     music_list_t *item = NULL;
 
@@ -55,10 +54,9 @@ void music_list_remove(music_list_t **music_list, int id)
         do {
             if (loop->id == id) {
                 item = music_list_pop(&loop);
-                start = (start->id == id) ? loop : start;
-                *music_list = start;
                 music_delete(item->msc);
                 free(item);
+                *music_list = (loop) ? loop : NULL;
                 break;
             }
             loop = loop->next;

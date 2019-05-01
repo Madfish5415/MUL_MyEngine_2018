@@ -47,7 +47,6 @@ sound_t *sound_list_get(sound_list_t *sound_list, int id)
 
 void sound_list_remove(sound_list_t **sound_list, int id)
 {
-    sound_list_t *start = *sound_list;
     sound_list_t *loop = *sound_list;
     sound_list_t *item = NULL;
 
@@ -55,10 +54,9 @@ void sound_list_remove(sound_list_t **sound_list, int id)
         do {
             if (loop->id == id) {
                 item = sound_list_pop(&loop);
-                start = (start->id == id) ? loop : start;
-                *sound_list = start;
                 sound_delete(item->snd);
                 free(item);
+                *sound_list = (loop) ? loop : NULL;
                 break;
             }
             loop = loop->next;

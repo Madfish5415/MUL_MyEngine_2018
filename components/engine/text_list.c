@@ -47,7 +47,6 @@ text_t *text_list_get(text_list_t *text_list, int id)
 
 void text_list_remove(text_list_t **text_list, int id)
 {
-    text_list_t *start = *text_list;
     text_list_t *loop = *text_list;
     text_list_t *item = NULL;
 
@@ -55,10 +54,9 @@ void text_list_remove(text_list_t **text_list, int id)
         do {
             if (loop->id == id) {
                 item = text_list_pop(&loop);
-                start = (start->id == id) ? loop : start;
-                *text_list = start;
                 text_delete(item->text);
                 free(item);
+                *text_list = (loop) ? loop : NULL;
                 break;
             }
             loop = loop->next;

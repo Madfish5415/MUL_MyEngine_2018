@@ -9,9 +9,9 @@
 #define MUL_MYENGINE_2018_UTILS_H
 
 /**
- * @file
- * @brief Include all util header files
- */
+* @file
+* @brief Include all utility header files
+*/
 
 #include "utils/position.h"
 #include "utils/rectangle.h"

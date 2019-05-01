@@ -9,8 +9,8 @@
 #define MUL_MYENGINE_2018_COMPONENTS_GLOBAL_H
 
 /**
- * @file
- */
+* @file
+*/
 
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
@@ -18,31 +18,31 @@
 #include "value_list.h"
 
 /**
- * @brief Global component
- */
+* @brief Global component
+*/
 typedef struct global_s {
     sfRenderWindow *win;
     sfFloatRect rect;
     sfEvent evt;
     void *data;
     value_list_t *opts;
-    value_list_t *prms;
+    value_list_t *vals;
 } global_t;
 
 /**
- * @brief Create the global
- *
- * @param win
- * @param evt
- * @return
- */
+* @brief Create the global
+*
+* @param win
+* @param evt
+* @return
+*/
 global_t *global_create(sfRenderWindow *win, sfEvent evt);
 
 /**
- * @brief Delete the global
- *
- * @param global
- */
+* @brief Delete the global
+*
+* @param global
+*/
 void global_delete(global_t *global);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_GLOBAL_H

@@ -31,11 +31,11 @@ void modal_one_delete(modal_t *self)
         data_delete(self->data);
 }
 
-modal_t *modal_one_init(scene_t *scene)
+modal_t *modal_one_init(scene_t *scene, global_t *global)
 {
     modal_t *modal = modal_create(scene);
 
-    modal->data = modal_one_data_create();
+    modal->data = modal_one_data_create(global);
     modal->dlt = modal_one_delete;
     modal->evt = modal_one_events;
     modal->rdr = modal_one_render;

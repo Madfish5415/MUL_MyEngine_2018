@@ -47,7 +47,6 @@ value_t *value_list_get(value_list_t *value_list, int id)
 
 void value_list_remove(value_list_t **value_list, int id)
 {
-    value_list_t *start = *value_list;
     value_list_t *loop = *value_list;
     value_list_t *item = NULL;
 
@@ -55,10 +54,9 @@ void value_list_remove(value_list_t **value_list, int id)
         do {
             if (loop->id == id) {
                 item = value_list_pop(&loop);
-                start = (start->id == id) ? loop : start;
-                *value_list = start;
                 value_delete(item->val);
                 free(item);
+                *value_list = (loop) ? loop : NULL;
                 break;
             }
             loop = loop->next;

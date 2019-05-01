@@ -9,8 +9,8 @@
 #define MUL_MYENGINE_2018_COMPONENTS_MODAL_H
 
 /**
- * @file
- */
+* @file
+*/
 
 #include <SFML/Graphics/Types.h>
 #include <SFML/Window/Event.h>
@@ -19,8 +19,8 @@
 #include "scene.h"
 
 /**
- * @brief Modal component
- */
+* @brief Modal component
+*/
 typedef struct modal_s {
     scene_t *scn;
     sfBool run;
@@ -32,42 +32,42 @@ typedef struct modal_s {
 } modal_t;
 
 /**
- * @brief Create a modal
- *
- * @param scn
- * @return
- */
+* @brief Create a modal
+*
+* @param scn
+* @return
+*/
 modal_t *modal_create(scene_t *scn);
 
 /**
- * @brief Delete a modal
- *
- * @param modal
- */
+* @brief Delete a modal
+*
+* @param modal
+*/
 void modal_delete(modal_t *modal);
 
 /**
- * @brief Call the events method of a modal
- *
- * @param self
- * @param global
- */
+* @brief Call the events method of a modal
+*
+* @param self
+* @param global
+*/
 void modal_events(modal_t *self, global_t *global);
 
 /**
- * @brief Call the render method of a modal
- *
- * @param self
- * @param global
- */
+* @brief Call the render method of a modal
+*
+* @param self
+* @param global
+*/
 void modal_render(modal_t *self, global_t *global);
 
 /**
- * @brief Call the update method of a modal
- *
- * @param self
- * @param global
- */
+* @brief Call the update method of a modal
+*
+* @param self
+* @param global
+*/
 void modal_update(modal_t *self, global_t *global);
 
 

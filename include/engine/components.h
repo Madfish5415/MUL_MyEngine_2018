@@ -9,10 +9,12 @@
 #define MUL_MYENGINE_2018_COMPONENTS_H
 
 /**
- * @file
- * @brief Include all component header files
- */
+* @file
+* @brief Include all component header files
+*/
 
+#include "components/animation.h"
+#include "components/animation_list.h"
 #include "components/button.h"
 #include "components/button_list.h"
 #include "components/data.h"
@@ -32,9 +34,9 @@
 #include "components/sprite_list.h"
 #include "components/text.h"
 #include "components/text_list.h"
+#include "components/trigger.h"
+#include "components/trigger_list.h"
 #include "components/value.h"
 #include "components/value_list.h"
-#include "components/warp.h"
-#include "components/warp_list.h"
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_H

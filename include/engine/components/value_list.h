@@ -9,14 +9,14 @@
 #define MUL_MYENGINE_2018_COMPONENTS_OPTION_LIST_H
 
 /**
- * @file
- */
+* @file
+*/
 
 #include "value.h"
 
 /**
- * @brief Value list component
- */
+* @brief Value list component
+*/
 typedef struct value_list_s {
     value_t *val;
     int id;
@@ -25,44 +25,44 @@ typedef struct value_list_s {
 } value_list_t;
 
 /**
- * @brief Add a value to a value list
- *
- * @param value_list
- * @param value
- * @param id
- */
+* @brief Add a value to a value list
+*
+* @param value_list
+* @param value
+* @param id
+*/
 void value_list_add(value_list_t **value_list, value_t *value, int id);
 
 /**
- * @brief Get a value from a value list
- *
- * @param value_list
- * @param id
- * @return
- */
+* @brief Get a value from a value list
+*
+* @param value_list
+* @param id
+* @return
+*/
 value_t *value_list_get(value_list_t *value_list, int id);
 
 /**
- * @brief Remove a value from a value list
- *
- * @param value_list
- * @param id
- */
+* @brief Remove a value from a value list
+*
+* @param value_list
+* @param id
+*/
 void value_list_remove(value_list_t **value_list, int id);
 
 /**
- * @brief Remove and return the current value list item from a value list
- *
- * @param value_list
- * @return
- */
+* @brief Remove and return the current value list item from a value list
+*
+* @param value_list
+* @return
+*/
 value_list_t *value_list_pop(value_list_t **value_list);
 
 /**
- * @brief Delete a value list
- *
- * @param value_list
- */
+* @brief Delete a value list
+*
+* @param value_list
+*/
 void value_list_delete(value_list_t *value_list);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_OPTION_LIST_H
