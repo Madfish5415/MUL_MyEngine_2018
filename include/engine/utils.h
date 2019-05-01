@@ -10,7 +10,7 @@
 
 /**
 * @file
-* @brief Include all util header files
+* @brief Include all utility header files
 */
 
 #include "utils/position.h"

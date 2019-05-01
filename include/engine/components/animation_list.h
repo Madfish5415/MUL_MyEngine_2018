@@ -67,14 +67,45 @@ animation_list_t *animation_list_pop(animation_list_t **animation_list);
 */
 void animation_list_delete(animation_list_t *animation_list);
 
+/**
+* @brief Animate the animations related to the specified id in an animation
+* list
+*
+* @param button_list
+* @param id
+*/
 void animation_list_animate(animation_list_t *animation_list, int id);
 
+/**
+* @brief Display the animations related to the specified id in an animation
+* list
+*
+* @param animation_list
+* @param global
+* @param id
+*/
 void animation_list_display(animation_list_t *animation_list, global_t *global,
         int id);
 
+/**
+* @brief Move the animations related to the specified id in an animation
+* list
+*
+* @param animation_list
+* @param reset
+* @param id
+*/
 void animation_list_move(animation_list_t *animation_list, sfBool reset,
         int id);
 
+/**
+* @brief Update the animations related to the specified id in an animation
+* list
+*
+* @param animation_list
+* @param elapse
+* @param id
+*/
 void animation_list_update(animation_list_t **animation_list, rclock_t *elapse,
         int id);
 
