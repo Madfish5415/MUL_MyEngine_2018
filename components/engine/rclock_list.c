@@ -43,6 +43,20 @@ void rclock_list_add(rclock_list_t **rclock_list, rclock_t *rclock, int id)
     }
 }
 
+rclock_t *rclock_list_get(rclock_list_t *rclock_list, int id)
+{
+    rclock_list_t *loop = rclock_list;
+
+    if (rclock_list) {
+        do {
+            if (loop->id == id)
+                return (loop->rclk);
+            loop = loop->next;
+        } while (loop != rclock_list);
+    }
+    return (NULL);
+}
+
 rclock_list_t *rclock_list_pop(rclock_list_t **rclock_list)
 {
     rclock_list_t *item = *rclock_list;

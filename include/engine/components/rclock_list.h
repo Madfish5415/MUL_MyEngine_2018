@@ -42,6 +42,15 @@ rclock_list_t *rclock_list_create(int nbr);
 void rclock_list_add(rclock_list_t **rclock_list, rclock_t *rclock, int id);
 
 /**
+* @brief Get a rclock from a rclock list
+*
+* @param rclock_list
+* @param id
+* @return
+*/
+rclock_t *rclock_list_get(rclock_list_t *rclock_list, int id);
+
+/**
 * @brief Remove and return the current rclock list item from a rclock list
 *
 * @param rclock_list

@@ -19,6 +19,7 @@ void example_one_data_buttons(data_t *data, global_t *global)
     button_t *button_3 = button_create(ENGINE_BUTTON_3, rect, "", FONT_ROBOTO);
 
     (void) global;
+    button_3->act = animation_create_action;
     button_set_pos(button_1, vect_f(220, 100));
     button_set_pos(button_2, vect_f(440, 100));
     button_set_pos(button_3, vect_f(660, 100));

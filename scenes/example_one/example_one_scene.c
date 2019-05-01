@@ -28,6 +28,7 @@ void example_one_scene_render(scene_t *self, global_t *global)
     data_t *data = (data_t *) self->data;
 
     if (data) {
+        animation_list_display(data->anim_list, global, 0);
         button_list_display(data->btn_list, global, 0);
         dyn_sprite_list_display(data->dspt_list, global, 0);
         sprite_list_display(data->spt_list, global, 0);
@@ -38,8 +39,10 @@ void example_one_scene_render(scene_t *self, global_t *global)
 void example_one_scene_update(scene_t *self, global_t *global)
 {
     data_t *data = (data_t *) self->data;
+    rclock_t *elapse = NULL;
 
     if (data) {
+        elapse = rclock_list_get(data->rclk_list, 3);
         rclock_list_update(data->rclk_list, 0);
         while (rclock_list_time(data->rclk_list, 1, 1)) {
             animation_list_animate(data->anim_list, 0);
@@ -50,6 +53,7 @@ void example_one_scene_update(scene_t *self, global_t *global)
             animation_list_move(data->anim_list, sfTrue, 0);
             dyn_sprite_list_move(data->dspt_list, sfFalse, 0);
         }
+        animation_list_update(&data->anim_list, elapse, 0);
         rclock_list_restart(data->rclk_list, 3);
         modal_list_update(data->mdl_list, global, 0);
     }

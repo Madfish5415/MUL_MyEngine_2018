@@ -72,6 +72,7 @@ PROJ_SRC		=		window.c											\
 						managers/engine/triggers_manager.c					\
 						scenes/example_one/example_one_scene.c				\
 						scenes/example_one/example_one_data.c				\
+						scenes/example_one/actions/all_actions.c			\
 						scenes/example_one/modals/modal_one.c				\
 						scenes/example_one/modals/modal_one_data.c			\
 						scenes/example_two/example_two_scene.c				\
