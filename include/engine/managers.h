@@ -12,7 +12,8 @@
 #include "structs.h"
 
 enum MANAGER_ID {
-    LAST_BUTTON = 200
+    LAST_BUTTON = 200,
+    LAST_TRIGGER
 };
 
 // Buttons managers

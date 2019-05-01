@@ -9,8 +9,8 @@
 #define MUL_MYENGINE_2018_COMPONENTS_SCENE_H
 
 /**
- * @file
- */
+* @file
+*/
 
 #include <SFML/Graphics/Types.h>
 #include <SFML/Window/Event.h>
@@ -18,8 +18,8 @@
 #include "global.h"
 
 /**
- * @brief Scene component
- */
+* @brief Scene component
+*/
 typedef struct scene_s {
     int id;
     int nid;
@@ -32,42 +32,42 @@ typedef struct scene_s {
 } scene_t;
 
 /**
- * @brief Create a scene
- *
- * @param id
- * @return
- */
+* @brief Create a scene
+*
+* @param id
+* @return
+*/
 scene_t *scene_create(int id);
 
 /**
- * @brief Delete a scene
- *
- * @param scene
- */
+* @brief Delete a scene
+*
+* @param scene
+*/
 void scene_delete(scene_t *scene);
 
 /**
- * @brief Call the events method of a scene
- *
- * @param self
- * @param global
- */
+* @brief Call the events method of a scene
+*
+* @param self
+* @param global
+*/
 void scene_events(scene_t *self, global_t *global);
 
 /**
- * @brief Call the render method of a scene
- *
- * @param self
- * @param global
- */
+* @brief Call the render method of a scene
+*
+* @param self
+* @param global
+*/
 void scene_render(scene_t *self, global_t *global);
 
 /**
- * @brief Call the update method of a scene
- *
- * @param self
- * @param global
- */
+* @brief Call the update method of a scene
+*
+* @param self
+* @param global
+*/
 void scene_update(scene_t *self, global_t *global);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_SCENE_H

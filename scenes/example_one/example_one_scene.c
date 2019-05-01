@@ -61,8 +61,7 @@ scene_t *example_one_scene_init(global_t *global)
 {
     scene_t *scene = scene_create(EXAMPLE_ONE);
 
-    (void) global;
-    scene->data = example_one_data_create(scene);
+    scene->data = example_one_data_create(scene, global);
     scene->dlt = example_one_scene_delete;
     scene->evt = example_one_scene_events;
     scene->rdr = example_one_scene_render;

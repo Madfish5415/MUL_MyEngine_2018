@@ -9,8 +9,8 @@
 #define MUL_MYENGINE_2018_COMPONENTS_SCENE_DATA_H
 
 /**
- * @file
- */
+* @file
+*/
 
 #include "button_list.h"
 #include "dyn_sprite_list.h"
@@ -22,8 +22,8 @@
 #include "text_list.h"
 
 /**
- * @brief Data component
- */
+* @brief Data component
+*/
 typedef struct data_s {
     button_list_t *btn_list;
     dyn_sprite_list_t *dspt_list;
@@ -36,17 +36,17 @@ typedef struct data_s {
 } data_t;
 
 /**
- * @brief Create a data
- *
- * @return
- */
+* @brief Create a data
+*
+* @return
+*/
 data_t *data_create(void);
 
 /**
- * @brief Delete a data
- *
- * @param data
- */
+* @brief Delete a data
+*
+* @param data
+*/
 void data_delete(data_t *data);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_SCENE_DATA_H

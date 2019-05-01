@@ -33,7 +33,6 @@ _scene_t _SCENE_LIST[] = {
 // Window constants
 const unsigned int WINDOW_WIDTH = 1920;
 const unsigned int WINDOW_HEIGHT = 1080;
-const sfFloatRect WINDOW_RECT = {0, 0, 1920, 1080};
 const char *WINDOW_TITLE = "MyEngine";
 
 #endif // MUL_MYENGINE_2018_CONSTANTS_H

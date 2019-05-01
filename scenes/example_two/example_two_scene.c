@@ -40,7 +40,7 @@ scene_t *example_two_scene_init(global_t *global)
     scene_t *scene = scene_create(EXAMPLE_TWO);
 
     (void) global;
-    scene->data = example_two_data_create();
+    scene->data = example_two_data_create(scene, global);
     scene->dlt = example_two_scene_delete;
     scene->evt = example_two_scene_events;
     scene->rdr = example_two_scene_render;
