@@ -48,7 +48,6 @@ sprite_t *sprite_list_get(sprite_list_t *sprite_list, int id)
 
 void sprite_list_remove(sprite_list_t **sprite_list, int id)
 {
-    sprite_list_t *start = *sprite_list;
     sprite_list_t *loop = *sprite_list;
     sprite_list_t *item = NULL;
 
@@ -56,10 +55,9 @@ void sprite_list_remove(sprite_list_t **sprite_list, int id)
         do {
             if (loop->id == id) {
                 item = sprite_list_pop(&loop);
-                start = (start->id == id) ? loop : start;
-                *sprite_list = start;
                 sprite_delete(item->spt);
                 free(item);
+                *sprite_list = (loop) ? loop : NULL;
                 break;
             }
             loop = loop->next;

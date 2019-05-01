@@ -17,12 +17,14 @@
 #include "global.h"
 #include "scene.h"
 
+#define LAST_TRIGGER (201)
+
 /**
 * @brief Trigger component
 */
 typedef struct trigger_s {
     dyn_sprite_t *dspt;
-    sfIntRect zone;
+    sfFloatRect zone;
     void (*act)(scene_t *scene, global_t *global);
 } trigger_t;
 
@@ -34,7 +36,7 @@ typedef struct trigger_s {
 * @param zone
 * @return
 */
-trigger_t *trigger_create(const char *path, sfIntRect rect, sfIntRect zone);
+trigger_t *trigger_create(const char *path, sfIntRect rect, sfFloatRect zone);
 
 /**
 * @brief Delete a trigger
@@ -50,14 +52,5 @@ void trigger_delete(trigger_t *trigger);
 * @param global
 */
 void trigger_display(trigger_t *trigger, global_t *global);
-
-/**
-* @brief Check if a rectangle is on a trigger
-*
-* @param trigger
-* @param rect
-* @return
-*/
-int trigger_on_it(trigger_t *trigger, sfFloatRect rect);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_WARP_H

@@ -28,7 +28,7 @@ void example_one_data_buttons(data_t *data, global_t *global)
     button_list_add(&data->btn_list, button_3, 3);
 }
 
-void example_one_data_objects(data_t *data, global_t *global)
+void example_one_data_objects_one(data_t *data, global_t *global)
 {
     sfIntRect rect = {0, 0, 200, 200};
     dyn_sprite_t *dyn_sprite = dyn_sprite_create(ENGINE_DYN_SPRITE, rect);
@@ -40,6 +40,22 @@ void example_one_data_objects(data_t *data, global_t *global)
     dyn_sprite_set_road(dyn_sprite, road_one, 4);
     dyn_sprite_list_add(&data->dspt_list, dyn_sprite, 0);
     sprite_list_add(&data->spt_list, sprite, 0);
+}
+
+void example_one_data_objects_two(data_t *data, global_t *global)
+{
+    sfIntRect rect = {0, 0, 200, 200};
+    dyn_sprite_t *dyn_sprite = dyn_sprite_create(ENGINE_DYN_SPRITE, rect);
+    sfVector2f road_one[] = {
+            {global->rect.width - 200, 220}, {global->rect.width - 200, 420},
+            {global->rect.width - 640, 220}, {global->rect.width - 200, 220}
+    };
+    animation_t *animation = animation_create(dyn_sprite, 5);
+
+    (void) global;
+    sprite_set_pos(dyn_sprite->spt, road_one[0]);
+    dyn_sprite_set_road(dyn_sprite, road_one, 4);
+    animation_list_add(&data->anim_list, animation, 0);
 }
 
 void example_one_data_modals(data_t *data, scene_t *scene, global_t *global)
@@ -55,9 +71,10 @@ data_t *example_one_data_create(scene_t *scene, global_t *global)
 
     if (data) {
         example_one_data_buttons(data, global);
-        example_one_data_objects(data, global);
+        example_one_data_objects_one(data, global);
+        example_one_data_objects_two(data, global);
         example_one_data_modals(data, scene, global);
-        data->rclk_list = rclock_list_create(2);
+        data->rclk_list = rclock_list_create(3);
     }
     return (data);
 }

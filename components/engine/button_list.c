@@ -47,7 +47,6 @@ button_t *button_list_get(button_list_t *button_list, int id)
 
 void button_list_remove(button_list_t **button_list, int id)
 {
-    button_list_t *start = *button_list;
     button_list_t *loop = *button_list;
     button_list_t *item = NULL;
 
@@ -55,10 +54,9 @@ void button_list_remove(button_list_t **button_list, int id)
         do {
             if (loop->id == id) {
                 item = button_list_pop(&loop);
-                start = (start->id == id) ? loop : start;
-                *button_list = start;
                 button_delete(item->btn);
                 free(item);
+                *button_list = (loop) ? loop : NULL;
                 break;
             }
             loop = loop->next;

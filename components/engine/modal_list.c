@@ -47,7 +47,6 @@ modal_t *modal_list_get(modal_list_t *modal_list, int id)
 
 void modal_list_remove(modal_list_t **modal_list, int id)
 {
-    modal_list_t *start = *modal_list;
     modal_list_t *loop = *modal_list;
     modal_list_t *item = NULL;
 
@@ -55,10 +54,9 @@ void modal_list_remove(modal_list_t **modal_list, int id)
         do {
             if (loop->id == id) {
                 item = modal_list_pop(&loop);
-                start = (start->id == id) ? loop : start;
-                *modal_list = start;
                 modal_delete(item->mdl);
                 free(item);
+                *modal_list = (loop) ? loop : NULL;
                 break;
             }
             loop = loop->next;

@@ -17,6 +17,8 @@
 #include "scene.h"
 #include "text.h"
 
+#define LAST_BUTTON (200)
+
 /**
 * @brief Button state constants
 */

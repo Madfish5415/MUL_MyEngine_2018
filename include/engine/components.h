@@ -13,6 +13,8 @@
 * @brief Include all component header files
 */
 
+#include "components/animation.h"
+#include "components/animation_list.h"
 #include "components/button.h"
 #include "components/button_list.h"
 #include "components/data.h"

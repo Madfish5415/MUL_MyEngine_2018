@@ -10,7 +10,7 @@
 #include "engine/components/dyn_sprite.h"
 #include "engine/components/trigger.h"
 
-trigger_t *trigger_create(const char *path, sfIntRect rect, sfIntRect zone)
+trigger_t *trigger_create(const char *path, sfIntRect rect, sfFloatRect zone)
 {
     trigger_t *trigger = malloc(sizeof(trigger_t));
 

@@ -7,7 +7,7 @@
 
 #include <stdlib.h>
 #include "engine/components/button.h"
-#include "engine/components/sprite.h"
+#include "engine/components/dyn_sprite.h"
 #include "engine/components/text.h"
 #include "engine/utils.h"
 

@@ -42,11 +42,15 @@ void example_one_scene_update(scene_t *self, global_t *global)
     if (data) {
         rclock_list_update(data->rclk_list, 0);
         while (rclock_list_time(data->rclk_list, 1, 1)) {
+            animation_list_animate(data->anim_list, 0);
             button_list_animate(data->btn_list, 0);
             dyn_sprite_list_animate(data->dspt_list, 0);
         }
-        while (rclock_list_time(data->rclk_list, 0.05, 2))
-            dyn_sprite_list_move(data->dspt_list, 0, sfFalse);
+        while (rclock_list_time(data->rclk_list, 0.05, 2)) {
+            animation_list_move(data->anim_list, sfTrue, 0);
+            dyn_sprite_list_move(data->dspt_list, sfFalse, 0);
+        }
+        rclock_list_restart(data->rclk_list, 3);
         modal_list_update(data->mdl_list, global, 0);
     }
 }

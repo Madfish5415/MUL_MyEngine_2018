@@ -23,7 +23,7 @@ global_t *global_create(sfRenderWindow *win, sfEvent evt)
         global->evt = evt;
         global->data = NULL;
         global->opts = NULL;
-        global->prms = NULL;
+        global->vals = NULL;
     }
     return (global);
 }
@@ -33,7 +33,7 @@ void global_delete(global_t *global)
     if (global) {
         sfRenderWindow_destroy(global->win);
         value_list_delete(global->opts);
-        value_list_delete(global->prms);
+        value_list_delete(global->vals);
         free(global);
     }
 }

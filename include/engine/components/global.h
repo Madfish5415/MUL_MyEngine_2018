@@ -26,7 +26,7 @@ typedef struct global_s {
     sfEvent evt;
     void *data;
     value_list_t *opts;
-    value_list_t *prms;
+    value_list_t *vals;
 } global_t;
 
 /**

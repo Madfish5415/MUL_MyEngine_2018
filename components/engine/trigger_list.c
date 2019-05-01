@@ -16,7 +16,7 @@ void trigger_list_add(trigger_list_t **trigger_list, trigger_t *trigger,
     trigger_list_t *first = NULL;
     trigger_list_t *last = NULL;
 
-    item->trigger = trigger;
+    item->tgr = trigger;
     item->id = id;
     if (*trigger_list) {
         first = *trigger_list;
@@ -39,7 +39,7 @@ trigger_t *trigger_list_get(trigger_list_t *trigger_list, int id)
     if (trigger_list) {
         do {
             if (loop->id == id)
-                return (loop->trigger);
+                return (loop->tgr);
             loop = loop->next;
         } while (loop != trigger_list);
     }
@@ -48,7 +48,6 @@ trigger_t *trigger_list_get(trigger_list_t *trigger_list, int id)
 
 void trigger_list_remove(trigger_list_t **trigger_list, int id)
 {
-    trigger_list_t *start = *trigger_list;
     trigger_list_t *loop = *trigger_list;
     trigger_list_t *item = NULL;
 
@@ -56,10 +55,9 @@ void trigger_list_remove(trigger_list_t **trigger_list, int id)
         do {
             if (loop->id == id) {
                 item = trigger_list_pop(&loop);
-                start = (start->id == id) ? loop : start;
-                *trigger_list = start;
-                trigger_delete(item->trigger);
+                trigger_delete(item->tgr);
                 free(item);
+                *trigger_list = (loop) ? loop : NULL;
                 break;
             }
             loop = loop->next;
@@ -95,7 +93,7 @@ void trigger_list_delete(trigger_list_t *trigger_list)
     if (trigger_list) {
         do {
             item = trigger_list_pop(&trigger_list);
-            trigger_delete(item->trigger);
+            trigger_delete(item->tgr);
             free(item);
         } while (trigger_list != NULL);
     }

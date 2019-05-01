@@ -48,7 +48,6 @@ dyn_sprite_t *dyn_sprite_list_get(dyn_sprite_list_t *dyn_sprite_list, int id)
 
 void dyn_sprite_list_remove(dyn_sprite_list_t **dyn_sprite_list, int id)
 {
-    dyn_sprite_list_t *start = *dyn_sprite_list;
     dyn_sprite_list_t *loop = *dyn_sprite_list;
     dyn_sprite_list_t *item = NULL;
 
@@ -56,10 +55,9 @@ void dyn_sprite_list_remove(dyn_sprite_list_t **dyn_sprite_list, int id)
         do {
             if (loop->id == id) {
                 item = dyn_sprite_list_pop(&loop);
-                start = (start->id == id) ? loop : start;
-                *dyn_sprite_list = start;
                 dyn_sprite_delete(item->dspt);
                 free(item);
+                *dyn_sprite_list = (loop) ? loop : NULL;
                 break;
             }
             loop = loop->next;

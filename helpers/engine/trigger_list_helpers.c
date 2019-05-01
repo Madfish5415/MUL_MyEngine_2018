@@ -15,7 +15,7 @@ void trigger_list_animate(trigger_list_t *trigger_list, int id)
     if (trigger_list) {
         do {
             if ((loop->id == id) || (id == 0))
-                dyn_sprite_animate(loop->trigger->dspt);
+                dyn_sprite_animate(loop->tgr->dspt);
             loop = loop->next;
         } while (loop != trigger_list);
     }
@@ -29,22 +29,8 @@ void trigger_list_display(trigger_list_t *trigger_list, global_t *global,
     if (trigger_list) {
         do {
             if ((loop->id == id) || (id == 0))
-                trigger_display(loop->trigger, global);
+                trigger_display(loop->tgr, global);
             loop = loop->next;
         } while (loop != trigger_list);
     }
-}
-
-int trigger_list_on_it(trigger_list_t *trigger_list, sfFloatRect rect, int id)
-{
-    trigger_list_t *loop = trigger_list;
-
-    if (trigger_list) {
-        do {
-            if (loop->id == id)
-                return (trigger_on_it(loop->trigger, rect));
-            loop = loop->next;
-        } while (loop != trigger_list);
-    }
-    return (0);
 }

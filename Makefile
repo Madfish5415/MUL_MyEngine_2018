@@ -20,6 +20,8 @@ RM				=		rm -rf
 MAIN_SRC		=		main.c
 
 PROJ_SRC		=		window.c											\
+						components/engine/animation.c						\
+						components/engine/animation_list.c					\
 						components/engine/button.c							\
 						components/engine/button_list.c						\
 						components/engine/data.c							\
@@ -44,6 +46,8 @@ PROJ_SRC		=		window.c											\
 						components/engine/value.c							\
 						components/engine/value_list.c						\
 						events/engine/window/window_close_event.c			\
+						helpers/engine/animation_helpers.c					\
+						helpers/engine/animation_list_helpers.c				\
 						helpers/engine/button_helpers.c						\
 						helpers/engine/button_list_helpers.c				\
 						helpers/engine/dyn_sprite_helpers.c					\
@@ -65,6 +69,7 @@ PROJ_SRC		=		window.c											\
 						managers/engine/buttons_manager.c					\
 						managers/engine/events_manager.c					\
 						managers/engine/scenes_manager.c					\
+						managers/engine/triggers_manager.c					\
 						scenes/example_one/example_one_scene.c				\
 						scenes/example_one/example_one_data.c				\
 						scenes/example_one/modals/modal_one.c				\

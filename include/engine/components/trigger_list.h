@@ -19,7 +19,7 @@
 * @brief Warp list component
 */
 typedef struct trigger_list_s {
-    trigger_t *trigger;
+    trigger_t *tgr;
     int id;
     struct trigger_list_s *prev;
     struct trigger_list_s *next;
@@ -84,15 +84,5 @@ void trigger_list_animate(trigger_list_t *trigger_list, int id);
 */
 void trigger_list_display(trigger_list_t *trigger_list, global_t *global,
         int id);
-
-/**
-* @brief Check if a rectangle is on the triggers related to the specified id
-*
-* @param trigger_list
-* @param rect
-* @param id
-* @return
-*/
-int trigger_list_on_it(trigger_list_t *trigger_list, sfFloatRect rect, int id);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_WARP_LIST_H
