@@ -63,7 +63,7 @@ void dyn_sprite_calculate(dyn_sprite_t *dyn_sprite, int step, int next)
     double delta_y = 0;
 
     if (dyn_sprite) {
-        if (((next - step) > 0) && (next <= dyn_sprite->steps)) {
+        if (((next - step) > 0) && (next < dyn_sprite->steps)) {
             delta_x = dyn_sprite->road[next].x - dyn_sprite->road[step].x;
             delta_y = dyn_sprite->road[next].y - dyn_sprite->road[step].y;
         }
@@ -89,6 +89,7 @@ void dyn_sprite_move(dyn_sprite_t *dyn_sprite, sfBool reset)
             dyn_sprite->step = 0;
             dyn_sprite_calculate(dyn_sprite, 0, 1);
             sprite_set_pos(dyn_sprite->spt, dyn_sprite->road[0]);
-        }
+        } else
+            dyn_sprite_calculate(dyn_sprite, 0, 0);
     }
 }
