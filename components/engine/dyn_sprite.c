@@ -45,13 +45,8 @@ void dyn_sprite_set_rect(dyn_sprite_t *dyn_sprite, sfIntRect rect)
 void dyn_sprite_set_road(dyn_sprite_t *dyn_sprite,
         sfVector2f *road, int steps)
 {
-    sfVector2f *road_m = malloc(sizeof(sfVector2f) * (steps + 1));
-
     if (dyn_sprite) {
-        for (int i = 0; i < steps; ++i)
-            road_m[i] = road[i];
-        road_m[steps] = road[steps - 1];
-        dyn_sprite->road = road_m;
+        dyn_sprite->road = road;
         dyn_sprite->step = 0;
         dyn_sprite->steps = steps;
         dyn_sprite_calculate(dyn_sprite, 0, 1);
