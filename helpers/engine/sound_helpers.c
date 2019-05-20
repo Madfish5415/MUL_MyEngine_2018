@@ -12,30 +12,30 @@ void sound_play(sound_t *sound)
 {
     sfSoundStatus status;
 
-    if (sound) {
-        status = sfSound_getStatus(sound->obj);
-        if (status == sfPaused)
-            sfSound_stop(sound->obj);
-        sfSound_play(sound->obj);
-    }
+    if (!sound)
+        return;
+    status = sfSound_getStatus(sound->obj);
+    if (status == sfPaused)
+        sfSound_stop(sound->obj);
+    sfSound_play(sound->obj);
 }
 
 void sound_pause(sound_t *sound)
 {
     sfSoundStatus status;
 
-    if (sound) {
-        status = sfSound_getStatus(sound->obj);
-        if (status == sfPlaying)
-            sfSound_pause(sound->obj);
-        else if (status == sfPaused)
-            sfSound_play(sound->obj);
-    }
+    if (!sound)
+        return;
+    status = sfSound_getStatus(sound->obj);
+    if (status == sfPlaying)
+        sfSound_pause(sound->obj);
+    else if (status == sfPaused)
+        sfSound_play(sound->obj);
 }
 
 void sound_stop(sound_t *sound)
 {
-    if (sound) {
-        sfSound_stop(sound->obj);
-    }
+    if (!sound)
+        return;
+    sfSound_stop(sound->obj);
 }

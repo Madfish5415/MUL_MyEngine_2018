@@ -47,13 +47,13 @@ rclock_t *rclock_list_get(rclock_list_t *rclock_list, int id)
 {
     rclock_list_t *loop = rclock_list;
 
-    if (rclock_list) {
-        do {
-            if (loop->id == id)
-                return (loop->rclk);
-            loop = loop->next;
-        } while (loop != rclock_list);
-    }
+    if (!rclock_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->rclk);
+        loop = loop->next;
+    } while (loop != rclock_list);
     return (NULL);
 }
 
@@ -63,18 +63,18 @@ rclock_list_t *rclock_list_pop(rclock_list_t **rclock_list)
     rclock_list_t *prev = NULL;
     rclock_list_t *next = NULL;
 
-    if (*rclock_list) {
-        if (item != item->next) {
-            prev = item->prev;
-            next = item->next;
-            prev->next = next;
-            next->prev = prev;
-            *rclock_list = next;
-        } else
-            *rclock_list = NULL;
-        item->prev = NULL;
-        item->next = NULL;
-    }
+    if (!*rclock_list)
+        return (NULL);
+    if (item != item->next) {
+        prev = item->prev;
+        next = item->next;
+        prev->next = next;
+        next->prev = prev;
+        *rclock_list = next;
+    } else
+        *rclock_list = NULL;
+    item->prev = NULL;
+    item->next = NULL;
     return (item);
 }
 
@@ -82,11 +82,11 @@ void rclock_list_delete(rclock_list_t *rclock_list)
 {
     rclock_list_t *item = NULL;
 
-    if (rclock_list) {
-        do {
-            item = rclock_list_pop(&rclock_list);
-            rclock_delete(item->rclk);
-            free(item);
-        } while (rclock_list != NULL);
-    }
+    if (!rclock_list)
+        return;
+    do {
+        item = rclock_list_pop(&rclock_list);
+        rclock_delete(item->rclk);
+        free(item);
+    } while (rclock_list != NULL);
 }

@@ -11,7 +11,8 @@
 
 void sprite_display(sprite_t *sprite, global_t *global)
 {
-    if (sprite)
-        if (window_is_visible(global, sprite))
-            sfRenderWindow_drawSprite(global->win, sprite->obj, NULL);
+    if (!sprite || !sprite->obj || !global)
+        return;
+    if (window_is_visible(global, sprite))
+        sfRenderWindow_drawSprite(global->win, sprite->obj, NULL);
 }

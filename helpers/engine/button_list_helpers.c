@@ -12,24 +12,24 @@ void button_list_animate(button_list_t *button_list, int id)
 {
     button_list_t *loop = button_list;
 
-    if (button_list) {
-        do {
-            if ((loop->id == id) || (id == 0))
-                dyn_sprite_animate(loop->btn->dspt);
-            loop = loop->next;
-        } while (loop != button_list);
-    }
+    if (!button_list)
+        return;
+    do {
+        if (loop->btn && ((loop->id == id) || (id == 0)))
+            dyn_sprite_animate(loop->btn->dspt);
+        loop = loop->next;
+    } while (loop != button_list);
 }
 
 void button_list_display(button_list_t *button_list, global_t *global, int id)
 {
     button_list_t *loop = button_list;
 
-    if (button_list) {
-        do {
-            if ((loop->id == id) || (id == 0))
-                button_display(loop->btn, global);
-            loop = loop->next;
-        } while (loop != button_list);
-    }
+    if (!button_list)
+        return;
+    do {
+        if ((loop->id == id) || (id == 0))
+            button_display(loop->btn, global);
+        loop = loop->next;
+    } while (loop != button_list);
 }

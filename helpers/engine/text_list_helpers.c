@@ -12,11 +12,11 @@ void text_list_display(text_list_t *text_list, global_t *global, int id)
 {
     text_list_t *loop = text_list;
 
-    if (text_list) {
-        do {
-            if ((loop->id == id) || (id == 0))
-                text_display(loop->text, global);
-            loop = loop->next;
-        } while (loop != text_list);
-    }
+    if (!text_list)
+        return;
+    do {
+        if ((loop->id == id) || (id == 0))
+            text_display(loop->text, global);
+        loop = loop->next;
+    } while (loop != text_list);
 }

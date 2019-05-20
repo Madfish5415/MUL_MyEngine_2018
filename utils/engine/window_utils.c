@@ -27,10 +27,10 @@ sfBool window_is_visible(global_t *global, sprite_t *sprite)
     sfFloatRect rect_s;
     sfFloatRect rect_i;
 
-    if (sprite) {
-        rect_s = sfSprite_getGlobalBounds(sprite->obj);
-        if (sfFloatRect_intersects(&rect_s, &global->rect, &rect_i))
-            bool = sfTrue;
-    }
+    if (!sprite || !global)
+        return (sfFalse);
+    rect_s = sfSprite_getGlobalBounds(sprite->obj);
+    if (sfFloatRect_intersects(&rect_s, &global->rect, &rect_i))
+        bool = sfTrue;
     return (bool);
 }

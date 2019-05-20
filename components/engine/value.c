@@ -13,18 +13,18 @@ value_t *value_create(int itg, float flt, sfBool bool, void *all)
 {
     value_t *value = malloc(sizeof(value_t));
 
-    if (value) {
-        value->itg = itg;
-        value->flt = flt;
-        value->bool = bool;
-        value->all = all;
-    }
+    if (!value)
+        return (NULL);
+    value->itg = itg;
+    value->flt = flt;
+    value->bool = bool;
+    value->all = all;
     return (value);
 }
 
 void value_delete(value_t *value)
 {
-    if (value) {
-        free(value);
-    }
+    if (!value)
+        return;
+    free(value);
 }

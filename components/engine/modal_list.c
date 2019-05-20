@@ -35,13 +35,13 @@ modal_t *modal_list_get(modal_list_t *modal_list, int id)
 {
     modal_list_t *loop = modal_list;
 
-    if (modal_list) {
-        do {
-            if (loop->id == id)
-                return (loop->mdl);
-            loop = loop->next;
-        } while (loop != modal_list);
-    }
+    if (!modal_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->mdl);
+        loop = loop->next;
+    } while (loop != modal_list);
     return (NULL);
 }
 
@@ -50,18 +50,18 @@ void modal_list_remove(modal_list_t **modal_list, int id)
     modal_list_t *loop = *modal_list;
     modal_list_t *item = NULL;
 
-    if (*modal_list) {
-        do {
-            if (loop->id == id) {
-                item = modal_list_pop(&loop);
-                modal_delete(item->mdl);
-                free(item);
-                *modal_list = (loop) ? loop : NULL;
-                break;
-            }
-            loop = loop->next;
-        } while (loop != *modal_list);
-    }
+    if (!*modal_list)
+        return;
+    do {
+        if (loop->id == id) {
+            item = modal_list_pop(&loop);
+            modal_delete(item->mdl);
+            free(item);
+            *modal_list = (loop) ? loop : NULL;
+            break;
+        }
+        loop = loop->next;
+    } while (loop != *modal_list);
 }
 
 modal_list_t *modal_list_pop(modal_list_t **modal_list)
@@ -70,18 +70,18 @@ modal_list_t *modal_list_pop(modal_list_t **modal_list)
     modal_list_t *prev = NULL;
     modal_list_t *next = NULL;
 
-    if (*modal_list) {
-        if (item != item->next) {
-            prev = item->prev;
-            next = item->next;
-            prev->next = next;
-            next->prev = prev;
-            *modal_list = next;
-        } else
-            *modal_list = NULL;
-        item->prev = NULL;
-        item->next = NULL;
-    }
+    if (!*modal_list)
+        return (NULL);
+    if (item != item->next) {
+        prev = item->prev;
+        next = item->next;
+        prev->next = next;
+        next->prev = prev;
+        *modal_list = next;
+    } else
+        *modal_list = NULL;
+    item->prev = NULL;
+    item->next = NULL;
     return (item);
 }
 
@@ -89,11 +89,11 @@ void modal_list_delete(modal_list_t *modal_list)
 {
     modal_list_t *item = NULL;
 
-    if (modal_list) {
-        do {
-            item = modal_list_pop(&modal_list);
-            modal_delete(item->mdl);
-            free(item);
-        } while (modal_list != NULL);
-    }
+    if (!modal_list)
+        return;
+    do {
+        item = modal_list_pop(&modal_list);
+        modal_delete(item->mdl);
+        free(item);
+    } while (modal_list != NULL);
 }

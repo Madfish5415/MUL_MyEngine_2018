@@ -10,14 +10,14 @@
 
 void animation_display(animation_t *animation, global_t *global)
 {
-    if (animation) {
-        sprite_display(animation->dspt->spt, global);
-    }
+    if (!animation || !global)
+        return;
+    sprite_display(animation->dspt->spt, global);
 }
 
 void animation_update(animation_t *animation, rclock_t *elapse)
 {
-    if (animation) {
-        animation->secs -= elapse->secs;
-    }
+    if (!animation || !elapse)
+        return;
+    animation->secs -= elapse->secs;
 }

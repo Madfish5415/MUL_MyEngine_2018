@@ -35,13 +35,13 @@ sound_t *sound_list_get(sound_list_t *sound_list, int id)
 {
     sound_list_t *loop = sound_list;
 
-    if (sound_list) {
-        do {
-            if (loop->id == id)
-                return (loop->snd);
-            loop = loop->next;
-        } while (loop != sound_list);
-    }
+    if (!sound_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->snd);
+        loop = loop->next;
+    } while (loop != sound_list);
     return (NULL);
 }
 
@@ -50,18 +50,18 @@ void sound_list_remove(sound_list_t **sound_list, int id)
     sound_list_t *loop = *sound_list;
     sound_list_t *item = NULL;
 
-    if (*sound_list) {
-        do {
-            if (loop->id == id) {
-                item = sound_list_pop(&loop);
-                sound_delete(item->snd);
-                free(item);
-                *sound_list = (loop) ? loop : NULL;
-                break;
-            }
-            loop = loop->next;
-        } while (loop != *sound_list);
-    }
+    if (!*sound_list)
+        return;
+    do {
+        if (loop->id == id) {
+            item = sound_list_pop(&loop);
+            sound_delete(item->snd);
+            free(item);
+            *sound_list = (loop) ? loop : NULL;
+            break;
+        }
+        loop = loop->next;
+    } while (loop != *sound_list);
 }
 
 sound_list_t *sound_list_pop(sound_list_t **sound_list)
@@ -70,18 +70,18 @@ sound_list_t *sound_list_pop(sound_list_t **sound_list)
     sound_list_t *prev = NULL;
     sound_list_t *next = NULL;
 
-    if (*sound_list) {
-        if (item != item->next) {
-            prev = item->prev;
-            next = item->next;
-            prev->next = next;
-            next->prev = prev;
-            *sound_list = next;
-        } else
-            *sound_list = NULL;
-        item->prev = NULL;
-        item->next = NULL;
-    }
+    if (!*sound_list)
+        return (NULL);
+    if (item != item->next) {
+        prev = item->prev;
+        next = item->next;
+        prev->next = next;
+        next->prev = prev;
+        *sound_list = next;
+    } else
+        *sound_list = NULL;
+    item->prev = NULL;
+    item->next = NULL;
     return (item);
 }
 
@@ -89,11 +89,11 @@ void sound_list_delete(sound_list_t *sound_list)
 {
     sound_list_t *item = NULL;
 
-    if (sound_list) {
-        do {
-            item = sound_list_pop(&sound_list);
-            sound_delete(item->snd);
-            free(item);
-        } while (sound_list != NULL);
-    }
+    if (!sound_list)
+        return;
+    do {
+        item = sound_list_pop(&sound_list);
+        sound_delete(item->snd);
+        free(item);
+    } while (sound_list != NULL);
 }

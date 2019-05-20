@@ -14,18 +14,20 @@ trigger_t *trigger_create(const char *path, sfIntRect rect, sfFloatRect zone)
 {
     trigger_t *trigger = malloc(sizeof(trigger_t));
 
-    if (trigger) {
-        trigger->dspt = dyn_sprite_create(path, rect);
-        trigger->zone = zone;
-        trigger->act = NULL;
-    }
+    if (!trigger)
+        return (NULL);
+    trigger->dspt = dyn_sprite_create(path, rect);
+    if (!trigger->dspt)
+        return (NULL);
+    trigger->zone = zone;
+    trigger->act = NULL;
     return (trigger);
 }
 
 void trigger_delete(trigger_t *trigger)
 {
-    if (trigger) {
-        dyn_sprite_delete(trigger->dspt);
-        free(trigger);
-    }
+    if (!trigger)
+        return;
+    dyn_sprite_delete(trigger->dspt);
+    free(trigger);
 }

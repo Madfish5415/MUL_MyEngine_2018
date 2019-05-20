@@ -11,6 +11,8 @@
 
 void events_manager(_event_t *_event_list, global_t *global)
 {
+    if (!_event_list || !global)
+        return;
     for (int i = 0; _event_list[i].act != 0; ++i)
         if (global->evt.type == _event_list[i].type)
             _event_list[i].act(global);
