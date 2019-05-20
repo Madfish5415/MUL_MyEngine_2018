@@ -57,8 +57,9 @@ void buttons_manager(button_list_t *button_list, scene_t *scene,
         return;
     do {
         state = buttons_manager_state(loop->btn, global);
-        if ((state == BTN_STATE_HOVERED) &&
-            (loop->btn->state == BTN_STATE_CLICKED) && (loop->btn->act)) {
+        state = (state && (state == BTN_STATE_HOVERED)) ? 1 : 0;
+        state = (state && (loop->btn->state == BTN_STATE_CLICKED)) ? 1 : 0;
+        if (state && loop->btn->act) {
             buttons_manager_set_value(loop->id, global);
             loop->btn->act(scene, global);
         }

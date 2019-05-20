@@ -24,19 +24,28 @@ void triggers_manager_set_value(int id, global_t *global)
     }
 }
 
+int triggers_manager_state(trigger_t *trigger, sfFloatRect rect)
+{
+    sfFloatRect rect_i;
+
+    if (!trigger)
+        return (0);
+    if (sfFloatRect_intersects(&trigger->zone, &rect, &rect_i))
+        return (1);
+    return (0);
+}
+
 void triggers_manager(trigger_list_t *trigger_list, sfFloatRect rect,
         scene_t *scene, global_t *global)
 {
     trigger_list_t *loop = trigger_list;
-    sfFloatRect rect_i = {0, 0, 0, 0};
     int state = 0;
 
     if (!trigger_list)
         return;
     do {
-        state = sfFloatRect_intersects(&loop->tgr->zone,
-                &rect, &rect_i);
-        if (state) {
+        state = triggers_manager_state(loop->tgr, rect);
+        if (state && loop->tgr->act) {
             triggers_manager_set_value(loop->id, global);
             loop->tgr->act(scene, global);
         }
