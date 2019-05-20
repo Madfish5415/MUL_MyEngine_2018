@@ -27,7 +27,7 @@ sound_t *sound_create(const char *path, float vol)
 
 void sound_set_volume(sound_t *sound, float vol)
 {
-    if (!sound || !sound->obj)
+    if (!sound)
         return;
     sound->vol = vol;
     sfSound_setVolume(sound->obj, sound->vol);
@@ -35,7 +35,7 @@ void sound_set_volume(sound_t *sound, float vol)
 
 void sound_delete(sound_t *sound)
 {
-    if (!sound || !sound->obj || !sound->buf)
+    if (!sound)
         return;
     sfSoundBuffer_destroy(sound->buf);
     sfSound_destroy(sound->obj);

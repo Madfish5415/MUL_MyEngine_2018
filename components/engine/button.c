@@ -9,7 +9,6 @@
 #include "engine/components/button.h"
 #include "engine/components/dyn_sprite.h"
 #include "engine/components/text.h"
-#include "engine/utils/object_check.h"
 #include "engine/utils.h"
 
 button_t *button_create(const char *path, sfIntRect size,

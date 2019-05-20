@@ -13,8 +13,8 @@
 
 void button_display(button_t *button, global_t *global)
 {
-    if (button) {
-        sprite_display(button->dspt->spt, global);
-        text_display(button->txt, global);
-    }
+    if (!button || !global)
+        return;
+    sprite_display(button->dspt->spt, global);
+    text_display(button->txt, global);
 }

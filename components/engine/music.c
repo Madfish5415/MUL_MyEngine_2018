@@ -26,7 +26,7 @@ music_t *music_create(const char *path, float vol, sfBool loop)
 
 void music_set_volume(music_t *music, float vol)
 {
-    if (!music || !music->obj)
+    if (!music)
         return;
     music->vol = vol;
     sfMusic_setVolume(music->obj, music->vol);
@@ -34,7 +34,7 @@ void music_set_volume(music_t *music, float vol)
 
 void music_delete(music_t *music)
 {
-    if (!music || !music->obj)
+    if (!music)
         return;
     sfMusic_destroy(music->obj);
     free(music);

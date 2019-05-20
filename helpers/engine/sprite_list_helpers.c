@@ -12,11 +12,11 @@ void sprite_list_display(sprite_list_t *sprite_list, global_t *global, int id)
 {
     sprite_list_t *loop = sprite_list;
 
-    if (sprite_list) {
-        do {
-            if ((loop->id == id) || (id == 0))
-                sprite_display(loop->spt, global);
-            loop = loop->next;
-        } while (loop != sprite_list);
-    }
+    if (!sprite_list)
+        return;
+    do {
+        if ((loop->id == id) || (id == 0))
+            sprite_display(loop->spt, global);
+        loop = loop->next;
+    } while (loop != sprite_list);
 }

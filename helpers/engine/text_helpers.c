@@ -10,7 +10,7 @@
 
 void text_display(text_t *text, global_t *global)
 {
-    if (text) {
-        sfRenderWindow_drawText(global->win, text->obj, NULL);
-    }
+    if (!text || !text->obj)
+        return;
+    sfRenderWindow_drawText(global->win, text->obj, NULL);
 }

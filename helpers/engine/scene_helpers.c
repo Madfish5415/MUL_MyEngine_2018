@@ -10,21 +10,21 @@
 
 void scene_events(scene_t *self, global_t *global)
 {
-    if (self)
-        if (self->evt)
-            self->evt(self, global);
+    if (!self || !self->evt || !global)
+        return;
+    self->evt(self, global);
 }
 
 void scene_render(scene_t *self, global_t *global)
 {
-    if (self)
-        if (self->rdr)
-            self->rdr(self, global);
+    if (!self || !self->rdr || !global)
+        return;
+    self->rdr(self, global);
 }
 
 void scene_update(scene_t *self, global_t *global)
 {
-    if (self)
-        if (self->upd)
-            self->upd(self, global);
+    if (!self || !self->upd || !global)
+        return;
+    self->upd(self, global);
 }

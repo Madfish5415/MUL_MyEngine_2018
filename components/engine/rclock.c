@@ -16,6 +16,8 @@ rclock_t *rclock_create(void)
     if (!rclock)
         return (NULL);
     rclock->clk = sfClock_create();
+    if (!rclock->clk)
+        return (NULL);
     rclock->secs = 0;
     rclock->rst = sfFalse;
     return (rclock);
@@ -35,7 +37,7 @@ int rclock_time(rclock_t *rclock, float seconds)
 
 void rclock_restart(rclock_t *rclock)
 {
-    if (!rclock || !rclock->clk)
+    if (!rclock)
         return;
     rclock->secs = 0;
     rclock->rst = sfFalse;
@@ -46,7 +48,7 @@ void rclock_update(rclock_t *rclock)
 {
     sfTime time;
 
-    if (!rclock || !rclock->clk)
+    if (!rclock)
         return;
     if (rclock->rst) {
         rclock->rst = sfFalse;
@@ -58,7 +60,7 @@ void rclock_update(rclock_t *rclock)
 
 void rclock_delete(rclock_t *rclock)
 {
-    if (!rclock || !rclock->clk)
+    if (!rclock)
         return;
     sfClock_destroy(rclock->clk);
     free(rclock);

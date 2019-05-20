@@ -33,7 +33,7 @@ sprite_t *sprite_create(const char *path)
 
 void sprite_set_txtr(sprite_t *sprite, const char *path)
 {
-    if (!sprite || !sprite->obj || !sprite->txtr)
+    if (!sprite)
         return;
     sfTexture_destroy(sprite->txtr);
     sprite->txtr = sfTexture_createFromFile(path, NULL);
@@ -45,14 +45,14 @@ void sprite_set_txtr(sprite_t *sprite, const char *path)
 
 void sprite_set_rect(sprite_t *sprite, sfIntRect rect)
 {
-    if (!sprite || !sprite->obj) return;
+    if (!sprite) return;
     sprite->rect = rect;
     sfSprite_setTextureRect(sprite->obj, sprite->rect);
 }
 
 void sprite_set_pos(sprite_t *sprite, sfVector2f pos)
 {
-    if (!sprite || !sprite->obj)
+    if (!sprite)
         return;
     sprite->pos = pos;
     sfSprite_setPosition(sprite->obj, sprite->pos);
@@ -60,7 +60,7 @@ void sprite_set_pos(sprite_t *sprite, sfVector2f pos)
 
 void sprite_delete(sprite_t *sprite)
 {
-    if (!sprite || !sprite->obj || !sprite->txtr)
+    if (!sprite)
         return;
     sfTexture_destroy(sprite->txtr);
     sfSprite_destroy(sprite->obj);

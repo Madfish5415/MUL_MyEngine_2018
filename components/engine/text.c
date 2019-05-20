@@ -35,7 +35,7 @@ text_t *text_create(const char *value, unsigned int size, const char *font)
 
 void text_set_font(text_t *text, const char *path)
 {
-    if (!text || !text->obj || !text->font)
+    if (!text)
         return;
     sfFont_destroy(text->font);
     text->font = sfFont_createFromFile(path);
@@ -45,7 +45,7 @@ void text_set_font(text_t *text, const char *path)
 
 void text_set_value(text_t *text, const char *value, unsigned int size)
 {
-    if (!text || !text->obj)
+    if (!text)
         return;
     if (value)
         sfText_setString(text->obj, value);
@@ -57,7 +57,7 @@ void text_set_value(text_t *text, const char *value, unsigned int size)
 
 void text_set_pos(text_t *text, sfVector2f pos)
 {
-    if (!text || !text->obj)
+    if (!text)
         return;
     text->pos = pos;
     sfText_setPosition(text->obj, pos);
@@ -65,7 +65,7 @@ void text_set_pos(text_t *text, sfVector2f pos)
 
 void text_delete(text_t *text)
 {
-    if (!text || !text->obj || !text->font)
+    if (!text)
         return;
     sfFont_destroy(text->font);
     sfText_destroy(text->obj);

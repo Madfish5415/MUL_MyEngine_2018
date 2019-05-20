@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include "engine/components/animation.h"
 #include "engine/components/animation_list.h"
-#include "engine/utils/object_check.h"
 
 void animation_list_add(animation_list_t **animation_list,
         animation_t *animation, int id)

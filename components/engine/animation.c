@@ -8,7 +8,6 @@
 #include <stdlib.h>
 #include "engine/components/animation.h"
 #include "engine/components/dyn_sprite.h"
-#include "engine/utils/object_check.h"
 
 animation_t *animation_create(dyn_sprite_t *dspt, float secs)
 {
