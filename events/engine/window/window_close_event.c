@@ -11,5 +11,7 @@
 
 void window_close(global_t *global)
 {
+    if (!global || !global->win)
+        return;
     sfRenderWindow_close(global->win);
 }

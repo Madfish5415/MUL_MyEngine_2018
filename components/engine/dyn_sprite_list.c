@@ -36,13 +36,13 @@ dyn_sprite_t *dyn_sprite_list_get(dyn_sprite_list_t *dyn_sprite_list, int id)
 {
     dyn_sprite_list_t *loop = dyn_sprite_list;
 
-    if (dyn_sprite_list) {
-        do {
-            if (loop->id == id)
-                return (loop->dspt);
-            loop = loop->next;
-        } while (loop != dyn_sprite_list);
-    }
+    if (!dyn_sprite_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->dspt);
+        loop = loop->next;
+    } while (loop != dyn_sprite_list);
     return (NULL);
 }
 
@@ -51,18 +51,18 @@ void dyn_sprite_list_remove(dyn_sprite_list_t **dyn_sprite_list, int id)
     dyn_sprite_list_t *loop = *dyn_sprite_list;
     dyn_sprite_list_t *item = NULL;
 
-    if (*dyn_sprite_list) {
-        do {
-            if (loop->id == id) {
-                item = dyn_sprite_list_pop(&loop);
-                dyn_sprite_delete(item->dspt);
-                free(item);
-                *dyn_sprite_list = (loop) ? loop : NULL;
-                break;
-            }
-            loop = loop->next;
-        } while (loop != *dyn_sprite_list);
-    }
+    if (!*dyn_sprite_list)
+        return;
+    do {
+        if (loop->id == id) {
+            item = dyn_sprite_list_pop(&loop);
+            dyn_sprite_delete(item->dspt);
+            free(item);
+            *dyn_sprite_list = (loop) ? loop : NULL;
+            break;
+        }
+        loop = loop->next;
+    } while (loop != *dyn_sprite_list);
 }
 
 dyn_sprite_list_t *dyn_sprite_list_pop(dyn_sprite_list_t **dyn_sprite_list)
@@ -71,18 +71,18 @@ dyn_sprite_list_t *dyn_sprite_list_pop(dyn_sprite_list_t **dyn_sprite_list)
     dyn_sprite_list_t *prev = NULL;
     dyn_sprite_list_t *next = NULL;
 
-    if (*dyn_sprite_list) {
-        if (item != item->next) {
-            prev = item->prev;
-            next = item->next;
-            prev->next = next;
-            next->prev = prev;
-            *dyn_sprite_list = next;
-        } else
-            *dyn_sprite_list = NULL;
-        item->prev = NULL;
-        item->next = NULL;
-    }
+    if (!*dyn_sprite_list)
+        return (NULL);
+    if (item != item->next) {
+        prev = item->prev;
+        next = item->next;
+        prev->next = next;
+        next->prev = prev;
+        *dyn_sprite_list = next;
+    } else
+        *dyn_sprite_list = NULL;
+    item->prev = NULL;
+    item->next = NULL;
     return (item);
 }
 
@@ -90,11 +90,11 @@ void dyn_sprite_list_delete(dyn_sprite_list_t *dyn_sprite_list)
 {
     dyn_sprite_list_t *item = NULL;
 
-    if (dyn_sprite_list) {
-        do {
-            item = dyn_sprite_list_pop(&dyn_sprite_list);
-            dyn_sprite_delete(item->dspt);
-            free(item);
-        } while (dyn_sprite_list != NULL);
-    }
+    if (!dyn_sprite_list)
+        return;
+    do {
+        item = dyn_sprite_list_pop(&dyn_sprite_list);
+        dyn_sprite_delete(item->dspt);
+        free(item);
+    } while (dyn_sprite_list != NULL);
 }

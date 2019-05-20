@@ -12,24 +12,23 @@ scene_t *scene_create(int id)
 {
     scene_t *scene = malloc(sizeof(scene_t));
 
-    if (scene) {
-        scene->id = id;
-        scene->nid = id;
-        scene->run = sfTrue;
-        scene->data = NULL;
-        scene->dlt = NULL;
-        scene->evt = NULL;
-        scene->rdr = NULL;
-        scene->upd = NULL;
-    }
+    if (!scene)
+        return (NULL);
+    scene->id = id;
+    scene->nid = id;
+    scene->run = sfTrue;
+    scene->data = NULL;
+    scene->dlt = NULL;
+    scene->evt = NULL;
+    scene->rdr = NULL;
+    scene->upd = NULL;
     return (scene);
 }
 
 void scene_delete(scene_t *scene)
 {
-    if (scene) {
-        if (scene->dlt)
-            scene->dlt(scene);
-        free(scene);
-    }
+    if (!scene || !scene->dlt)
+        return;
+    scene->dlt(scene);
+    free(scene);
 }

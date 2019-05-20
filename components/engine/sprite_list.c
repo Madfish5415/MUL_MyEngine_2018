@@ -36,13 +36,13 @@ sprite_t *sprite_list_get(sprite_list_t *sprite_list, int id)
 {
     sprite_list_t *loop = sprite_list;
 
-    if (sprite_list) {
-        do {
-            if (loop->id == id)
-                return (loop->spt);
-            loop = loop->next;
-        } while (loop != sprite_list);
-    }
+    if (!sprite_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->spt);
+        loop = loop->next;
+    } while (loop != sprite_list);
     return (NULL);
 }
 
@@ -51,18 +51,18 @@ void sprite_list_remove(sprite_list_t **sprite_list, int id)
     sprite_list_t *loop = *sprite_list;
     sprite_list_t *item = NULL;
 
-    if (*sprite_list) {
-        do {
-            if (loop->id == id) {
-                item = sprite_list_pop(&loop);
-                sprite_delete(item->spt);
-                free(item);
-                *sprite_list = (loop) ? loop : NULL;
-                break;
-            }
-            loop = loop->next;
-        } while (loop != *sprite_list);
-    }
+    if (!*sprite_list)
+        return;
+    do {
+        if (loop->id == id) {
+            item = sprite_list_pop(&loop);
+            sprite_delete(item->spt);
+            free(item);
+            *sprite_list = (loop) ? loop : NULL;
+            break;
+        }
+        loop = loop->next;
+    } while (loop != *sprite_list);
 }
 
 sprite_list_t *sprite_list_pop(sprite_list_t **sprite_list)
@@ -71,18 +71,18 @@ sprite_list_t *sprite_list_pop(sprite_list_t **sprite_list)
     sprite_list_t *prev = NULL;
     sprite_list_t *next = NULL;
 
-    if (*sprite_list) {
-        if (item != item->next) {
-            prev = item->prev;
-            next = item->next;
-            prev->next = next;
-            next->prev = prev;
-            *sprite_list = next;
-        } else
-            *sprite_list = NULL;
-        item->prev = NULL;
-        item->next = NULL;
-    }
+    if (!*sprite_list)
+        return (item);
+    if (item != item->next) {
+        prev = item->prev;
+        next = item->next;
+        prev->next = next;
+        next->prev = prev;
+        *sprite_list = next;
+    } else
+        *sprite_list = NULL;
+    item->prev = NULL;
+    item->next = NULL;
     return (item);
 }
 
@@ -90,11 +90,11 @@ void sprite_list_delete(sprite_list_t *sprite_list)
 {
     sprite_list_t *item = NULL;
 
-    if (sprite_list) {
-        do {
-            item = sprite_list_pop(&sprite_list);
-            sprite_delete(item->spt);
-            free(item);
-        } while (sprite_list != NULL);
-    }
+    if (!sprite_list)
+        return;
+    do {
+        item = sprite_list_pop(&sprite_list);
+        sprite_delete(item->spt);
+        free(item);
+    } while (sprite_list != NULL);
 }

@@ -13,23 +13,22 @@ modal_t *modal_create(scene_t *scn)
 {
     modal_t *modal = malloc(sizeof(modal_t));
 
-    if (modal) {
-        modal->scn = scn;
-        modal->run = sfFalse;
-        modal->data = NULL;
-        modal->dlt = NULL;
-        modal->evt = NULL;
-        modal->rdr = NULL;
-        modal->upd = NULL;
-    }
+    if (!modal || !scn)
+        return (NULL);
+    modal->scn = scn;
+    modal->run = sfFalse;
+    modal->data = NULL;
+    modal->dlt = NULL;
+    modal->evt = NULL;
+    modal->rdr = NULL;
+    modal->upd = NULL;
     return (modal);
 }
 
 void modal_delete(modal_t *modal)
 {
-    if (modal) {
-        if (modal->dlt)
-            modal->dlt(modal);
-        free(modal);
-    }
+    if (!modal || !modal->dlt)
+        return;
+    modal->dlt(modal);
+    free(modal);
 }
