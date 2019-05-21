@@ -16,8 +16,8 @@ trigger_t *trigger_create(const char *path, sfIntRect rect, sfFloatRect zone)
 
     if (!trigger)
         return (NULL);
-    trigger->dspt = dyn_sprite_create(path, rect);
-    if (!trigger->dspt)
+    trigger->dspt = (path) ? dyn_sprite_create(path, rect) : NULL;
+    if (path && !trigger->dspt)
         return (NULL);
     trigger->zone = zone;
     trigger->act = NULL;

@@ -52,14 +52,15 @@ void buttons_manager(button_list_t *button_list, scene_t *scene,
 {
     button_list_t *loop = button_list;
     int state = 0;
+    int update = 0;
 
     if (!button_list)
         return;
     do {
         state = buttons_manager_state(loop->btn, global);
-        state = (state && (state == BTN_STATE_HOVERED)) ? 1 : 0;
-        state = (state && (loop->btn->state == BTN_STATE_CLICKED)) ? 1 : 0;
-        if (state && loop->btn->act) {
+        update = (state && (state == BTN_STATE_HOVERED)) ? 1 : 0;
+        update = (update && (loop->btn->state == BTN_STATE_CLICKED)) ? 1 : 0;
+        if (update && loop->btn->act) {
             buttons_manager_set_value(loop->id, global);
             loop->btn->act(scene, global);
         }
