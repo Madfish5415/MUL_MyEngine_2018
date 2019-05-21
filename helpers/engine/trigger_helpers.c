@@ -9,7 +9,7 @@
 
 void trigger_display(trigger_t *trigger, global_t *global)
 {
-    if (!trigger)
+    if (!trigger || !trigger->dspt)
         return;
     sprite_display(trigger->dspt->spt, global);
 }

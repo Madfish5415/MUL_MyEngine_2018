@@ -13,14 +13,17 @@ static void dyn_sprite_calculate_vect(dyn_sprite_t *dyn_sprite,
 {
     double agl = 0;
     sfVector2f vect = {0, 0};
+    float factor = 100000;
 
     if (delta_x || delta_y) {
         agl = (delta_x) ? atan((delta_y / delta_x)) : (M_PI / 2);
         agl *= (agl >= 0) ? 1 : -1;
         vect.x = dyn_sprite->spd * (float) cos(agl);
         vect.x *= (delta_x >= 0) ? 1 : -1;
+        vect.x = roundf(vect.x * factor) / factor;
         vect.y = dyn_sprite->spd * (float) sin(agl);
         vect.y *= (delta_y >= 0) ? 1 : -1;
+        vect.y = roundf(vect.y * factor) / factor;
     }
     dyn_sprite->agl = agl;
     dyn_sprite->vect = vect;
