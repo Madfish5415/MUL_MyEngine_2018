@@ -9,7 +9,6 @@
 #include <stdlib.h>
 #include "engine/components/text.h"
 #include "engine/utils/position.h"
-#include "engine/externs.h"
 #include "engine/utils.h"
 
 text_t *text_create(const char *value, unsigned int size, const char *font)

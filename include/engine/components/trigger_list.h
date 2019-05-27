@@ -36,15 +36,6 @@ void trigger_list_add(trigger_list_t **trigger_list, trigger_t *trigger,
         int id);
 
 /**
-* @brief Get a trigger from a trigger list
-*
-* @param trigger_list
-* @param id
-* @return
-*/
-trigger_t *trigger_list_get(trigger_list_t *trigger_list, int id);
-
-/**
 * @brief Remove a trigger from a trigger list
 *
 * @param trigger_list
@@ -84,5 +75,14 @@ void trigger_list_animate(trigger_list_t *trigger_list, int id);
 */
 void trigger_list_display(trigger_list_t *trigger_list, global_t *global,
         int id);
+
+/**
+* @brief Get a trigger from a trigger list
+*
+* @param trigger_list
+* @param id
+* @return
+*/
+trigger_t *trigger_list_get(trigger_list_t *trigger_list, int id);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_WARP_LIST_H

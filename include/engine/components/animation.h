@@ -13,7 +13,7 @@
 */
 
 #include "dyn_sprite.h"
-#include "rclock.h"
+#include "eclock.h"
 
 /**
 * @brief Animation component
@@ -53,6 +53,6 @@ void animation_display(animation_t *animation, global_t *global);
 * @param animation
 * @param elapse
 */
-void animation_update(animation_t *animation, rclock_t *elapse);
+void animation_update(animation_t *animation, eclock_t *elapse);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_ANIMATION_H

@@ -34,15 +34,6 @@ typedef struct sound_list_s {
 void sound_list_add(sound_list_t **sound_list, sound_t *sound, int id);
 
 /**
-* @brief Get a sound from a sound list
-*
-* @param sound_list
-* @param id
-* @return
-*/
-sound_t *sound_list_get(sound_list_t *sound_list, int id);
-
-/**
 * @brief Remove a sound from a sound list
 *
 * @param sound_list
@@ -64,6 +55,15 @@ sound_list_t *sound_list_pop(sound_list_t **sound_list);
 * @param sound_list
 */
 void sound_list_delete(sound_list_t *sound_list);
+
+/**
+* @brief Get a sound from a sound list
+*
+* @param sound_list
+* @param id
+* @return
+*/
+sound_t *sound_list_get(sound_list_t *sound_list, int id);
 
 /**
 * @brief Play the music related to the specified id

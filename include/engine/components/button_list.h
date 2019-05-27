@@ -35,15 +35,6 @@ typedef struct button_list_s {
 void button_list_add(button_list_t **button_list, button_t *button, int id);
 
 /**
-* @brief Get a button from a button list
-*
-* @param button_list
-* @param id
-* @return
-*/
-button_t *button_list_get(button_list_t *button_list, int id);
-
-/**
 * @brief Remove a button from a button list
 *
 * @param button_list
@@ -82,5 +73,14 @@ void button_list_animate(button_list_t *button_list, int id);
 * @param id
 */
 void button_list_display(button_list_t *button_list, global_t *global, int id);
+
+/**
+* @brief Get a button from a button list
+*
+* @param button_list
+* @param id
+* @return
+*/
+button_t *button_list_get(button_list_t *button_list, int id);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_BUTTON_LIST_H

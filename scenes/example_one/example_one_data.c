@@ -7,9 +7,8 @@
 
 #include <stdlib.h>
 #include "engine/components.h"
-#include "engine/externs.h"
 #include "engine/utils.h"
-#include "scenes.h"
+#include "scenes/example_one.h"
 #include "resources.h"
 
 void example_one_data_buttons(data_t *data, global_t *global)
@@ -79,7 +78,7 @@ data_t *example_one_data_create(scene_t *scene, global_t *global)
         example_one_data_objects_one(data, global);
         example_one_data_objects_two(data, global);
         example_one_data_modals(data, scene, global);
-        data->rclk_list = rclock_list_create(3);
+        data->eclk_list = eclock_list_create(3);
     }
     return (data);
 }

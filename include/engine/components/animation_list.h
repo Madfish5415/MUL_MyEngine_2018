@@ -35,15 +35,6 @@ void animation_list_add(animation_list_t **animation_list,
         animation_t *animation, int id);
 
 /**
-* @brief Get an animation from an animation list
-*
-* @param animation_list
-* @param id
-* @return
-*/
-animation_t *animation_list_get(animation_list_t *animation_list, int id);
-
-/**
 * @brief Remove an animation from an animation list
 *
 * @param animation_list
@@ -88,6 +79,15 @@ void animation_list_display(animation_list_t *animation_list, global_t *global,
         int id);
 
 /**
+* @brief Get an animation from an animation list
+*
+* @param animation_list
+* @param id
+* @return
+*/
+animation_t *animation_list_get(animation_list_t *animation_list, int id);
+
+/**
 * @brief Move the animations related to the specified id in an animation
 * list
 *
@@ -106,7 +106,7 @@ void animation_list_move(animation_list_t *animation_list, sfBool reset,
 * @param elapse
 * @param id
 */
-void animation_list_update(animation_list_t **animation_list, rclock_t *elapse,
+void animation_list_update(animation_list_t **animation_list, eclock_t *elapse,
         int id);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_ANIMATION_LIST_H

@@ -36,15 +36,6 @@ void dyn_sprite_list_add(dyn_sprite_list_t **dyn_sprite_list,
         dyn_sprite_t *dyn_sprite, int id);
 
 /**
-* @brief Get a dynamic sprite from a dynamic sprite list
-*
-* @param dyn_sprite_list
-* @param id
-* @return
-*/
-dyn_sprite_t *dyn_sprite_list_get(dyn_sprite_list_t *dyn_sprite_list, int id);
-
-/**
 * @brief Remove a dynaic sprite from a dynamic sprite list
 *
 * @param dyn_sprite_list
@@ -87,6 +78,15 @@ void dyn_sprite_list_animate(dyn_sprite_list_t *dyn_sprite_list, int id);
 */
 void dyn_sprite_list_display(dyn_sprite_list_t *dyn_sprite_list,
         global_t *global, int id);
+
+/**
+* @brief Get a dynamic sprite from a dynamic sprite list
+*
+* @param dyn_sprite_list
+* @param id
+* @return
+*/
+dyn_sprite_t *dyn_sprite_list_get(dyn_sprite_list_t *dyn_sprite_list, int id);
 
 /**
 * @brief Move the dynamic sprites related to the specific id in a dynamic

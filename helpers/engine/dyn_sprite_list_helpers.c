@@ -30,10 +30,24 @@ void dyn_sprite_list_display(dyn_sprite_list_t *dyn_sprite_list,
     if (!dyn_sprite_list)
         return;
     do {
-        if (loop->dspt && ((loop->id == id) || (id == 0)))
-            sprite_display(loop->dspt->spt, global);
+        if (((loop->id == id) || (id == 0)))
+            dyn_sprite_display(loop->dspt, global);
         loop = loop->next;
     } while (loop != dyn_sprite_list);
+}
+
+dyn_sprite_t *dyn_sprite_list_get(dyn_sprite_list_t *dyn_sprite_list, int id)
+{
+    dyn_sprite_list_t *loop = dyn_sprite_list;
+
+    if (!dyn_sprite_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->dspt);
+        loop = loop->next;
+    } while (loop != dyn_sprite_list);
+    return (NULL);
 }
 
 void dyn_sprite_list_move(dyn_sprite_list_t *dyn_sprite_list,

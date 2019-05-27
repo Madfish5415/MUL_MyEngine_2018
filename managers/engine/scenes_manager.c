@@ -10,7 +10,8 @@
 #include "engine/managers.h"
 #include "engine/structs.h"
 
-void scenes_manager(_scene_t *_scene_list, scene_t **p_scene, global_t *global)
+void scenes_manager(const _scene_t *_scene_list, scene_t **p_scene,
+        global_t *global)
 {
     scene_t *scene = *p_scene;
 

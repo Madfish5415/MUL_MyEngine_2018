@@ -9,7 +9,7 @@
 #include "engine/managers.h"
 #include "engine/structs.h"
 
-void events_manager(_event_t *_event_list, global_t *global)
+void events_manager(const _event_t *_event_list, global_t *global)
 {
     if (!_event_list || !global)
         return;

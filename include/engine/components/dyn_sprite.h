@@ -80,6 +80,14 @@ void dyn_sprite_animate(dyn_sprite_t *dyn_sprite);
 void dyn_sprite_calculate(dyn_sprite_t *dyn_sprite, int step, int next);
 
 /**
+* @brief Display a dynamic sprite
+*
+* @param dyn_sprite
+* @param global
+*/
+void dyn_sprite_display(dyn_sprite_t *dyn_sprite, global_t *global);
+
+/**
 * @brief Move a dynamic sprite
 *
 * @param dyn_sprite

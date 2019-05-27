@@ -6,16 +6,16 @@
 */
 
 #include "engine/components/animation.h"
-#include "engine/components/rclock.h"
+#include "engine/components/eclock.h"
 
 void animation_display(animation_t *animation, global_t *global)
 {
     if (!animation || !global)
         return;
-    sprite_display(animation->dspt->spt, global);
+    dyn_sprite_display(animation->dspt, global);
 }
 
-void animation_update(animation_t *animation, rclock_t *elapse)
+void animation_update(animation_t *animation, eclock_t *elapse)
 {
     if (!animation || !elapse)
         return;

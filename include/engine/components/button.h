@@ -75,6 +75,13 @@ void button_set_state(button_t *button, int state);
 void button_delete(button_t *button);
 
 /**
+* @brief Animate a button
+*
+* @param button
+*/
+void button_animate(button_t *button);
+
+/**
 * @brief Display a button
 *
 * @param button

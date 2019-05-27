@@ -39,22 +39,22 @@ void example_one_scene_render(scene_t *self, global_t *global)
 void example_one_scene_update(scene_t *self, global_t *global)
 {
     data_t *data = (data_t *) self->data;
-    rclock_t *elapse = NULL;
+    eclock_t *elapse = NULL;
 
     if (data) {
-        elapse = rclock_list_get(data->rclk_list, 3);
-        rclock_list_update(data->rclk_list, 0);
-        while (rclock_list_time(data->rclk_list, 1, 1)) {
+        elapse = eclock_list_get(data->eclk_list, 3);
+        eclock_list_update(data->eclk_list, 0);
+        while (eclock_list_time(data->eclk_list, 1, 1)) {
             animation_list_animate(data->anim_list, 0);
             button_list_animate(data->btn_list, 0);
             dyn_sprite_list_animate(data->dspt_list, 0);
         }
-        while (rclock_list_time(data->rclk_list, 0.05, 2)) {
+        while (eclock_list_time(data->eclk_list, 0.05, 2)) {
             animation_list_move(data->anim_list, sfTrue, 0);
             dyn_sprite_list_move(data->dspt_list, sfFalse, 0);
         }
         animation_list_update(&data->anim_list, elapse, 0);
-        rclock_list_restart(data->rclk_list, 3);
+        eclock_list_restart(data->eclk_list, 3);
         modal_list_update(data->mdl_list, global, 0);
     }
 }

@@ -35,6 +35,20 @@ void animation_list_display(animation_list_t *animation_list, global_t *global,
     } while (loop != animation_list);
 }
 
+animation_t *animation_list_get(animation_list_t *animation_list, int id)
+{
+    animation_list_t *loop = animation_list;
+
+    if (!animation_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->anim);
+        loop = loop->next;
+    } while (loop != animation_list);
+    return (NULL);
+}
+
 void animation_list_move(animation_list_t *animation_list, sfBool reset,
         int id)
 {
@@ -49,7 +63,7 @@ void animation_list_move(animation_list_t *animation_list, sfBool reset,
     } while (loop != animation_list);
 }
 
-void animation_list_update(animation_list_t **animation_list, rclock_t *elapse,
+void animation_list_update(animation_list_t **animation_list, eclock_t *elapse,
         int id)
 {
     animation_list_t *loop = *animation_list;

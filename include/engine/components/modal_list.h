@@ -38,15 +38,6 @@ typedef struct modal_list_s {
 void modal_list_add(modal_list_t **modal_list, modal_t *modal, int id);
 
 /**
-* @brief Get a modal from a modal list
-*
-* @param modal_list
-* @param id
-* @return
-*/
-modal_t *modal_list_get(modal_list_t *modal_list, int id);
-
-/**
 * @brief Remove a modal from a modal list
 *
 * @param modal_list
@@ -78,6 +69,15 @@ void modal_list_delete(modal_list_t *modal_list);
 * @param id
 */
 void modal_list_events(modal_list_t *modal_list, global_t *global, int id);
+
+/**
+* @brief Get a modal from a modal list
+*
+* @param modal_list
+* @param id
+* @return
+*/
+modal_t *modal_list_get(modal_list_t *modal_list, int id);
 
 /**
 * @brief Call the render method of the modals related to the specified id in

@@ -20,3 +20,17 @@ void sprite_list_display(sprite_list_t *sprite_list, global_t *global, int id)
         loop = loop->next;
     } while (loop != sprite_list);
 }
+
+sprite_t *sprite_list_get(sprite_list_t *sprite_list, int id)
+{
+    sprite_list_t *loop = sprite_list;
+
+    if (!sprite_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->spt);
+        loop = loop->next;
+    } while (loop != sprite_list);
+    return (NULL);
+}

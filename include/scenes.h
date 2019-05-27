@@ -9,25 +9,21 @@
 #define MUL_MYPROJECT_2018_SCENES_H
 
 #include "engine/components.h"
+#include "engine/structs.h"
+#include "scenes/example_one.h"
+#include "scenes/example_two.h"
 
+// Scene identifiers
 enum SCENE_ID {
     EXAMPLE_ONE = 1,
     EXAMPLE_TWO
 };
 
-// Example one functions
-scene_t *example_one_scene_init(global_t *global);
-data_t *example_one_data_create(scene_t *scene, global_t *global);
-
-// Example one action functions
-void animation_create_action(scene_t *scene, global_t *global);
-
-// Example one modal functions
-modal_t *modal_one_init(scene_t *scene, global_t *global);
-data_t *modal_one_data_create(global_t *global);
-
-// Example two functions
-scene_t *example_two_scene_init(global_t *global);
-data_t *example_two_data_create(scene_t *scene, global_t *global);
+// Scene list
+static const _scene_t _SCENE_LIST[] = {
+        {EXAMPLE_ONE, example_one_scene_init},
+        {EXAMPLE_TWO, example_two_scene_init},
+        {0, 0}
+};
 
 #endif // MUL_MYPROJECT_2018_SCENES_H

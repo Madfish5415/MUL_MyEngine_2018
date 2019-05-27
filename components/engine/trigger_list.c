@@ -9,22 +9,28 @@
 #include "engine/components/trigger.h"
 #include "engine/components/trigger_list.h"
 
-void trigger_list_add(trigger_list_t **trigger_list, trigger_t *trigger,
-        int id)
+static trigger_list_t *trigger_list_item(trigger_t *trigger, int id)
 {
     trigger_list_t *item = malloc(sizeof(trigger_list_t));
-    trigger_list_t *first = NULL;
-    trigger_list_t *last = NULL;
 
+    if (!item)
+        return (NULL);
     item->tgr = trigger;
     item->id = id;
+    return (item);
+}
+
+void trigger_list_add(trigger_list_t **trigger_list, trigger_t *trigger, int id)
+{
+    trigger_list_t *item = trigger_list_item(trigger, id);
+
+    if (!item)
+        return;
     if (*trigger_list) {
-        first = *trigger_list;
-        last = first->prev;
-        item->prev = last;
-        item->next = first;
-        first->prev = item;
-        last->next = item;
+        item->prev = (*trigger_list)->prev;
+        item->next = *trigger_list;
+        item->prev->next = item;
+        item->next->prev = item;
     } else {
         item->prev = item;
         item->next = item;
@@ -32,18 +38,19 @@ void trigger_list_add(trigger_list_t **trigger_list, trigger_t *trigger,
     }
 }
 
-trigger_t *trigger_list_get(trigger_list_t *trigger_list, int id)
+trigger_list_t *trigger_list_pop(trigger_list_t **trigger_list)
 {
-    trigger_list_t *loop = trigger_list;
+    trigger_list_t *item = *trigger_list;
 
-    if (!trigger_list)
+    if (!*(trigger_list))
         return (NULL);
-    do {
-        if (loop->id == id)
-            return (loop->tgr);
-        loop = loop->next;
-    } while (loop != trigger_list);
-    return (NULL);
+    if (*trigger_list != (*trigger_list)->next) {
+        item->prev->next = item->next;
+        item->next->prev = item->prev;
+        *trigger_list = item->next;
+    } else
+        *trigger_list = NULL;
+    return (item);
 }
 
 void trigger_list_remove(trigger_list_t **trigger_list, int id)
@@ -51,7 +58,7 @@ void trigger_list_remove(trigger_list_t **trigger_list, int id)
     trigger_list_t *loop = *trigger_list;
     trigger_list_t *item = NULL;
 
-    if (!*trigger_list)
+    if (!(*trigger_list))
         return;
     do {
         if (loop->id == id) {
@@ -63,27 +70,6 @@ void trigger_list_remove(trigger_list_t **trigger_list, int id)
         }
         loop = loop->next;
     } while (loop != *trigger_list);
-}
-
-trigger_list_t *trigger_list_pop(trigger_list_t **trigger_list)
-{
-    trigger_list_t *item = *trigger_list;
-    trigger_list_t *prev = NULL;
-    trigger_list_t *next = NULL;
-
-    if (!*trigger_list)
-        return (item);
-    if (item != item->next) {
-        prev = item->prev;
-        next = item->next;
-        prev->next = next;
-        next->prev = prev;
-        *trigger_list = next;
-    } else
-        *trigger_list = NULL;
-    item->prev = NULL;
-    item->next = NULL;
-    return (item);
 }
 
 void trigger_list_delete(trigger_list_t *trigger_list)
