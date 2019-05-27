@@ -9,21 +9,29 @@
 #include "engine/components/button.h"
 #include "engine/components/button_list.h"
 
-void button_list_add(button_list_t **button_list, button_t *button, int id)
+static button_list_t *button_list_item(button_t *button, int id)
 {
     button_list_t *item = malloc(sizeof(button_list_t));
-    button_list_t *first = NULL;
-    button_list_t *last = NULL;
 
+    if (!item)
+        return (NULL);
     item->btn = button;
     item->id = id;
+    return (item);
+}
+
+void button_list_add(button_list_t **button_list,
+                        button_t *button, int id)
+{
+    button_list_t *item = button_list_item(button, id);
+
+    if (!item)
+        return;
     if (*button_list) {
-        first = *button_list;
-        last = first->prev;
-        item->prev = last;
-        item->next = first;
-        first->prev = item;
-        last->next = item;
+        item->prev = (*button_list)->prev;
+        item->next = *button_list;
+        item->prev->next = item;
+        item->next->prev = item;
     } else {
         item->prev = item;
         item->next = item;
@@ -31,18 +39,19 @@ void button_list_add(button_list_t **button_list, button_t *button, int id)
     }
 }
 
-button_t *button_list_get(button_list_t *button_list, int id)
+button_list_t *button_list_pop(button_list_t **button_list)
 {
-    button_list_t *loop = button_list;
+    button_list_t *item = *button_list;
 
-    if (!button_list)
+    if (!*(button_list))
         return (NULL);
-    do {
-        if (loop->id == id)
-            return (loop->btn);
-        loop = loop->next;
-    } while (loop != button_list);
-    return (NULL);
+    if (*button_list != (*button_list)->next) {
+        item->prev->next = item->next;
+        item->next->prev = item->prev;
+        *button_list = item->next;
+    } else
+        *button_list = NULL;
+    return (item);
 }
 
 void button_list_remove(button_list_t **button_list, int id)
@@ -50,7 +59,7 @@ void button_list_remove(button_list_t **button_list, int id)
     button_list_t *loop = *button_list;
     button_list_t *item = NULL;
 
-    if (!*button_list)
+    if (!(*button_list))
         return;
     do {
         if (loop->id == id) {
@@ -62,27 +71,6 @@ void button_list_remove(button_list_t **button_list, int id)
         }
         loop = loop->next;
     } while (loop != *button_list);
-}
-
-button_list_t *button_list_pop(button_list_t **button_list)
-{
-    button_list_t *item = *button_list;
-    button_list_t *prev = NULL;
-    button_list_t *next = NULL;
-
-    if (!*button_list)
-        return (NULL);
-    if (item != item->next) {
-        prev = item->prev;
-        next = item->next;
-        prev->next = next;
-        next->prev = prev;
-        *button_list = next;
-    } else
-        *button_list = NULL;
-    item->prev = NULL;
-    item->next = NULL;
-    return (item);
 }
 
 void button_list_delete(button_list_t *button_list)

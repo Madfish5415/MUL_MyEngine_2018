@@ -5,6 +5,7 @@
 ** No description
 */
 
+#include <stdlib.h>
 #include "engine/components/modal.h"
 #include "engine/components/modal_list.h"
 
@@ -19,6 +20,20 @@ void modal_list_events(modal_list_t *modal_list, global_t *global, int id)
             modal_events(loop->mdl, global);
         loop = loop->next;
     } while (loop != modal_list);
+}
+
+modal_t *modal_list_get(modal_list_t *modal_list, int id)
+{
+    modal_list_t *loop = modal_list;
+
+    if (!modal_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->mdl);
+        loop = loop->next;
+    } while (loop != modal_list);
+    return (NULL);
 }
 
 void modal_list_render(modal_list_t *modal_list, global_t *global, int id)

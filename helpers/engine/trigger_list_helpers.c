@@ -34,3 +34,17 @@ void trigger_list_display(trigger_list_t *trigger_list, global_t *global,
         loop = loop->next;
     } while (loop != trigger_list);
 }
+
+trigger_t *trigger_list_get(trigger_list_t *trigger_list, int id)
+{
+    trigger_list_t *loop = trigger_list;
+
+    if (!trigger_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->tgr);
+        loop = loop->next;
+    } while (loop != trigger_list);
+    return (NULL);
+}

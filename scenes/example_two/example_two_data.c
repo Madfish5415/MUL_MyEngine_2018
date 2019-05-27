@@ -6,9 +6,8 @@
 */
 
 #include "engine/components.h"
-#include "engine/externs.h"
 #include "engine/utils.h"
-#include "scenes.h"
+#include "scenes/example_two.h"
 #include "resources.h"
 
 void example_two_data_objects(data_t *data, global_t *global)

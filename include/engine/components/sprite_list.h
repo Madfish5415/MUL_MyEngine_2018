@@ -35,15 +35,6 @@ typedef struct sprite_list_s {
 void sprite_list_add(sprite_list_t **sprite_list, sprite_t *sprite, int id);
 
 /**
-* @brief Get a sprite from a sprite list
-*
-* @param sprite_list
-* @param id
-* @return
-*/
-sprite_t *sprite_list_get(sprite_list_t *sprite_list, int id);
-
-/**
 * @brief Remove a sprite from a sprite list
 *
 * @param sprite_list
@@ -74,5 +65,14 @@ void sprite_list_delete(sprite_list_t *sprite_list);
 * @param id
 */
 void sprite_list_display(sprite_list_t *sprite_list, global_t *global, int id);
+
+/**
+* @brief Get a sprite from a sprite list
+*
+* @param sprite_list
+* @param id
+* @return
+*/
+sprite_t *sprite_list_get(sprite_list_t *sprite_list, int id);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_SPRITE_LIST_H

@@ -35,15 +35,6 @@ typedef struct text_list_s {
 void text_list_add(text_list_t **text_list, text_t *text, int id);
 
 /**
-* @brief Get a text from a text list
-*
-* @param text_list
-* @param id
-* @return
-*/
-text_t *text_list_get(text_list_t *text_list, int id);
-
-/**
 * @brief Remove a text from a text list
 *
 * @param text_list
@@ -74,5 +65,14 @@ void text_list_delete(text_list_t *text_list);
 * @param id
 */
 void text_list_display(text_list_t *text_list, global_t *global, int id);
+
+/**
+* @brief Get a text from a text list
+*
+* @param text_list
+* @param id
+* @return
+*/
+text_t *text_list_get(text_list_t *text_list, int id);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_TEXT_LIST_H

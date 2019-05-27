@@ -11,10 +11,17 @@
 #include "engine/components/text.h"
 #include "engine/utils/rectangle.h"
 
+void button_animate(button_t *button)
+{
+    if (!button)
+        return;
+    dyn_sprite_animate(button->dspt);
+}
+
 void button_display(button_t *button, global_t *global)
 {
     if (!button || !global)
         return;
-    sprite_display(button->dspt->spt, global);
+    dyn_sprite_display(button->dspt, global);
     text_display(button->txt, global);
 }

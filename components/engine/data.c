@@ -11,7 +11,7 @@
 #include "engine/components/dyn_sprite_list.h"
 #include "engine/components/modal_list.h"
 #include "engine/components/music_list.h"
-#include "engine/components/rclock_list.h"
+#include "engine/components/eclock_list.h"
 #include "engine/components/sound_list.h"
 #include "engine/components/sprite_list.h"
 #include "engine/components/text_list.h"
@@ -27,9 +27,9 @@ data_t *data_create(void)
     data->anim_list = NULL;
     data->btn_list = NULL;
     data->dspt_list = NULL;
+    data->eclk_list = NULL;
     data->mdl_list = NULL;
     data->msc_list = NULL;
-    data->rclk_list = NULL;
     data->snd_list = NULL;
     data->spt_list = NULL;
     data->text_list = NULL;
@@ -45,9 +45,9 @@ void data_delete(data_t *data)
     animation_list_delete(data->anim_list);
     button_list_delete(data->btn_list);
     dyn_sprite_list_delete(data->dspt_list);
+    eclock_list_delete(data->eclk_list);
     modal_list_delete(data->mdl_list);
     music_list_delete(data->msc_list);
-    rclock_list_delete(data->rclk_list);
     sound_list_delete(data->snd_list);
     sprite_list_delete(data->spt_list);
     text_list_delete(data->text_list);

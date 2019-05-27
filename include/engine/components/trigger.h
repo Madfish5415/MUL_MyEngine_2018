@@ -46,6 +46,13 @@ trigger_t *trigger_create(const char *path, sfIntRect rect, sfFloatRect zone);
 void trigger_delete(trigger_t *trigger);
 
 /**
+* @brief Animate a trigger
+*
+* @param trigger
+*/
+void trigger_animate(trigger_t *trigger);
+
+/**
 * @brief Display a trigger
 *
 * @param trigger

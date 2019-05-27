@@ -8,7 +8,6 @@
 #include <SFML/Graphics.h>
 #include "engine/components/sprite.h"
 #include "engine/utils/window.h"
-#include "engine/externs.h"
 
 sfVector2f window_get_mouse_pos(global_t *global)
 {

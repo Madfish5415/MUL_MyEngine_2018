@@ -7,9 +7,16 @@
 
 #include "engine/components/trigger.h"
 
+void trigger_animate(trigger_t *trigger)
+{
+    if (!trigger)
+        return;
+    dyn_sprite_animate(trigger->dspt);
+}
+
 void trigger_display(trigger_t *trigger, global_t *global)
 {
-    if (!trigger || !trigger->dspt)
+    if (!trigger || !global)
         return;
-    sprite_display(trigger->dspt->spt, global);
+    dyn_sprite_display(trigger->dspt, global);
 }

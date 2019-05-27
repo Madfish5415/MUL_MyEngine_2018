@@ -20,3 +20,17 @@ void text_list_display(text_list_t *text_list, global_t *global, int id)
         loop = loop->next;
     } while (loop != text_list);
 }
+
+text_t *text_list_get(text_list_t *text_list, int id)
+{
+    text_list_t *loop = text_list;
+
+    if (!text_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->text);
+        loop = loop->next;
+    } while (loop != text_list);
+    return (NULL);
+}

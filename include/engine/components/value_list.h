@@ -34,15 +34,6 @@ typedef struct value_list_s {
 void value_list_add(value_list_t **value_list, value_t *value, int id);
 
 /**
-* @brief Get a value from a value list
-*
-* @param value_list
-* @param id
-* @return
-*/
-value_t *value_list_get(value_list_t *value_list, int id);
-
-/**
 * @brief Remove a value from a value list
 *
 * @param value_list
@@ -64,5 +55,14 @@ value_list_t *value_list_pop(value_list_t **value_list);
 * @param value_list
 */
 void value_list_delete(value_list_t *value_list);
+
+/**
+* @brief Get a value from a value list
+*
+* @param value_list
+* @param id
+* @return
+*/
+value_t *value_list_get(value_list_t *value_list, int id);
 
 #endif // MUL_MYENGINE_2018_COMPONENTS_OPTION_LIST_H

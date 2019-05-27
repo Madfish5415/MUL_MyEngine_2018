@@ -27,13 +27,13 @@ PROJ_SRC		=		window.c											\
 						components/engine/data.c							\
 						components/engine/dyn_sprite.c						\
 						components/engine/dyn_sprite_list.c					\
+						components/engine/eclock.c							\
+						components/engine/eclock_list.c						\
 						components/engine/global.c							\
 						components/engine/modal.c							\
 						components/engine/modal_list.c						\
 						components/engine/music.c							\
 						components/engine/music_list.c						\
-						components/engine/rclock.c							\
-						components/engine/rclock_list.c						\
 						components/engine/scene.c							\
 						components/engine/sound.c							\
 						components/engine/sound_list.c						\
@@ -52,11 +52,11 @@ PROJ_SRC		=		window.c											\
 						helpers/engine/button_list_helpers.c				\
 						helpers/engine/dyn_sprite_helpers.c					\
 						helpers/engine/dyn_sprite_list_helpers.c			\
+						helpers/engine/eclock_list_helpers.c				\
 						helpers/engine/modal_helpers.c						\
 						helpers/engine/modal_list_helpers.c					\
 						helpers/engine/music_helpers.c						\
 						helpers/engine/music_list_helpers.c					\
-						helpers/engine/rclock_list_helpers.c				\
 						helpers/engine/scene_helpers.c						\
 						helpers/engine/sound_helpers.c						\
 						helpers/engine/sound_list_helpers.c					\
@@ -66,6 +66,7 @@ PROJ_SRC		=		window.c											\
 						helpers/engine/text_list_helpers.c					\
 						helpers/engine/trigger_helpers.c					\
 						helpers/engine/trigger_list_helpers.c				\
+						helpers/engine/value_list_helpers.c					\
 						managers/engine/buttons_manager.c					\
 						managers/engine/events_manager.c					\
 						managers/engine/scenes_manager.c					\
@@ -155,9 +156,9 @@ tests_re:		tests_fclean tests_run
 
 tests_sweet:	tests_run tests_clean
 
-tests_sh:       sweet
+tests_sh:		sweet
 				sh tests/tests.sh $(NAME) \
 				&& echo "$(GREEN_B_COLOR)Functional tests passed successfully$(NO_COLOR)" \
 				|| { echo "$(RED_B_COLOR)Functional tests did not pass successfully$(NO_COLOR)"; exit 1; }
 
-.PHONY:         all all_clean all_fclean clean fclean re sweet debug tests_run tests_clean tests_fclean tests_re tests_sweet tests_sh
+.PHONY:			all all_clean all_fclean clean fclean re sweet debug tests_run tests_clean tests_fclean tests_re tests_sweet tests_sh

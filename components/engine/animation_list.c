@@ -9,22 +9,29 @@
 #include "engine/components/animation.h"
 #include "engine/components/animation_list.h"
 
+static animation_list_t *animation_list_item(animation_t *animation, int id)
+{
+    animation_list_t *item = malloc(sizeof(animation_list_t));
+
+    if (!item)
+        return (NULL);
+    item->anim = animation;
+    item->id = id;
+    return (item);
+}
+
 void animation_list_add(animation_list_t **animation_list,
         animation_t *animation, int id)
 {
-    animation_list_t *item = malloc(sizeof(animation_list_t));
-    animation_list_t *first = NULL;
-    animation_list_t *last = NULL;
+    animation_list_t *item = animation_list_item(animation, id);
 
-    item->anim = animation;
-    item->id = id;
+    if (!item)
+        return;
     if (*animation_list) {
-        first = *animation_list;
-        last = first->prev;
-        item->prev = last;
-        item->next = first;
-        first->prev = item;
-        last->next = item;
+        item->prev = (*animation_list)->prev;
+        item->next = *animation_list;
+        item->prev->next = item;
+        item->next->prev = item;
     } else {
         item->prev = item;
         item->next = item;
@@ -32,18 +39,19 @@ void animation_list_add(animation_list_t **animation_list,
     }
 }
 
-animation_t *animation_list_get(animation_list_t *animation_list, int id)
+animation_list_t *animation_list_pop(animation_list_t **animation_list)
 {
-    animation_list_t *loop = animation_list;
+    animation_list_t *item = *animation_list;
 
-    if (!animation_list)
+    if (!*(animation_list))
         return (NULL);
-    do {
-        if (loop->id == id)
-            return (loop->anim);
-        loop = loop->next;
-    } while (loop != animation_list);
-    return (NULL);
+    if (*animation_list != (*animation_list)->next) {
+        item->prev->next = item->next;
+        item->next->prev = item->prev;
+        *animation_list = item->next;
+    } else
+        *animation_list = NULL;
+    return (item);
 }
 
 void animation_list_remove(animation_list_t **animation_list, int id)
@@ -63,27 +71,6 @@ void animation_list_remove(animation_list_t **animation_list, int id)
         }
         loop = loop->next;
     } while (loop != *animation_list);
-}
-
-animation_list_t *animation_list_pop(animation_list_t **animation_list)
-{
-    animation_list_t *item = *animation_list;
-    animation_list_t *prev = NULL;
-    animation_list_t *next = NULL;
-
-    if (!(*animation_list))
-        return (NULL);
-    if (item != item->next) {
-        prev = item->prev;
-        next = item->next;
-        prev->next = next;
-        next->prev = prev;
-        *animation_list = next;
-    } else
-        *animation_list = NULL;
-    item->prev = NULL;
-    item->next = NULL;
-    return (item);
 }
 
 void animation_list_delete(animation_list_t *animation_list)

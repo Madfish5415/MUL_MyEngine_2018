@@ -8,6 +8,20 @@
 #include "engine/components/sound.h"
 #include "engine/components/sound_list.h"
 
+sound_t *sound_list_get(sound_list_t *sound_list, int id)
+{
+    sound_list_t *loop = sound_list;
+
+    if (!sound_list)
+        return (NULL);
+    do {
+        if (loop->id == id)
+            return (loop->snd);
+        loop = loop->next;
+    } while (loop != sound_list);
+    return (NULL);
+}
+
 void sound_list_play(sound_list_t *sound_list, int id)
 {
     sound_list_t *loop = sound_list;

@@ -18,10 +18,10 @@ void buttons_manager(button_list_t *button_list,
         scene_t *scene, global_t *global);
 
 // Events manager
-void events_manager(_event_t *_event_list, global_t *global);
+void events_manager(const _event_t *_event_list, global_t *global);
 
 // Scenes manager
-void scenes_manager(_scene_t *_scene_list,
+void scenes_manager(const _scene_t *_scene_list,
         scene_t **p_scene, global_t *global);
 
 // Triggers manager

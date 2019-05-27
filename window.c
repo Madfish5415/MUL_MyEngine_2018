@@ -6,8 +6,10 @@
 */
 
 #include <SFML/Graphics.h>
-#include "engine/externs.h"
+#include "engine/constants.h"
 #include "engine/managers.h"
+#include "constants.h"
+#include "events.h"
 #include "scenes.h"
 
 int window_display(global_t *global, scene_t *scene)
@@ -28,17 +30,17 @@ int window_launch(void)
     sfVideoMode mode = {WINDOW_WIDTH, WINDOW_HEIGHT, 32};
     sfRenderWindow *window = sfRenderWindow_create(mode,
             WINDOW_TITLE, sfDefaultStyle, NULL);
-    sfEvent event;
+    sfEvent event = {0};
     global_t *global = global_create(window, event);
     scene_t *scene = example_one_scene_init(global);
 
     if (!window)
-        return (CODE_FAILURE);
+        return (EG_FAILURE);
     while (sfRenderWindow_isOpen(window)) {
         scenes_manager(_SCENE_LIST, &scene, global);
         window_display(global, scene);
     }
     scene_delete(scene);
     global_delete(global);
-    return (CODE_SUCCESS);
+    return (EG_SUCCESS);
 }

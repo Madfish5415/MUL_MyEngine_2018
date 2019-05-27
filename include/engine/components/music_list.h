@@ -34,15 +34,6 @@ typedef struct music_list_s {
 void music_list_add(music_list_t **music_list, music_t *music, int id);
 
 /**
-* @brief Get a music from a music list
-*
-* @param music_list
-* @param id
-* @return
-*/
-music_t *music_list_get(music_list_t *music_list, int id);
-
-/**
 * @brief Remove a music from a music list
 *
 * @param music_list
@@ -64,6 +55,15 @@ music_list_t *music_list_pop(music_list_t **music_list);
 * @param music_list
 */
 void music_list_delete(music_list_t *music_list);
+
+/**
+* @brief Get a music from a music list
+*
+* @param music_list
+* @param id
+* @return
+*/
+music_t *music_list_get(music_list_t *music_list, int id);
 
 /**
 * @brief Play the musics related to the specified id
